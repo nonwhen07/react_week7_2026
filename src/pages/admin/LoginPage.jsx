@@ -41,7 +41,7 @@ const LoginPage = () => {
 
       const { token, expired } = res;
 
-      document.cookie = `hexToken_week6=${token}; path=/; expires=${new Date(
+      document.cookie = `hexToken_week7=${token}; path=/; expires=${new Date(
         expired,
       ).toUTCString()}`;
 

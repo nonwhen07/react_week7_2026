@@ -20,7 +20,7 @@ const BackNavBar = () => {
       await logout();
 
       // 清除 cookie
-      // document.cookie = 'hexToken_week6=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+      // document.cookie = 'hexToken_week7=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
       clearToken();
       // alert('登出成功，即將跳轉到登入面');
       showSuccess('登出成功，即將跳轉到登入面');
