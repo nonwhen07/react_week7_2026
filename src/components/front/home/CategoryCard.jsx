@@ -1,9 +1,11 @@
 const CategoryCard = ({ category }) => {
   return (
-    <div className="category-card">
-      <img src={category.image} />
+    <div className="card-category">
+      <div className="card-category__image">
+        <img src={category.image} />
+      </div>
 
-      <h3>{category.title}</h3>
+      <h3 className="card-category__title">{category.title}</h3>
     </div>
   );
 };

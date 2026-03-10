@@ -1,13 +1,17 @@
 const ProductCard = ({ product }) => {
   return (
-    <div className="product-card">
-      <img src={product.image} alt={product.title} />
+    <div className="card-product">
+      <div className="card-product__image">
+        <img src={product.imageUrl} alt={product.title} />
+      </div>
 
-      <h3>{product.title}</h3>
+      <div className="card-product__content">
+        <h3 className="card-product__title">{product.title}</h3>
 
-      <p className="price">${product.price}</p>
+        <p className="card-product__price">${product.price}</p>
 
-      <button className="btn-primary">Add to Cart</button>
+        <button className="ui-btn-primary">Add to Cart</button>
+      </div>
     </div>
   );
 };

@@ -7,7 +7,7 @@ export default function FonterLayout() {
   return (
     <>
       <NavBar />
-      <main className="container py-4">
+      <main className="container ui-layout">
         <Outlet />
       </main>
       <GoTop />

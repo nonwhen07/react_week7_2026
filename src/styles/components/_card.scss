@@ -1,0 +1,44 @@
+.card-product {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  padding: 16px;
+  border-radius: 12px;
+
+  transition: all 0.3s;
+}
+
+.card-product__image img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+.card-product__title {
+  font-size: 16px;
+}
+
+.card-product__price {
+  font-weight: 600;
+}
+
+.card-category {
+  text-align: center;
+  cursor: pointer;
+
+  border-radius: 16px;
+  overflow: hidden;
+
+  transition: transform 0.3s;
+}
+
+.card-category__image img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+
+.card-category__title {
+  padding: 12px;
+}
