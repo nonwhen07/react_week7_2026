@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import HeroBanner from '@/components/front/home/HeroBanner';
 import CategorySection from '@/components/front/home/CategorySection';
-import ProductSection from '@/components/front/home/ProductSection';
+import ProductSection from '@/components/front/home/ProductSection/ProductSection';
 
 import BrandSection from '@/components/front/home/BrandSection';
 import ReviewSection from '@/components/front/home/ReviewSection';
@@ -15,6 +15,7 @@ import PageLoader from '@/components/PageLoader';
 export default function HomePage() {
   const [products, setProducts] = useState([]);
   const [hotProducts, setHotProducts] = useState([]);
+  const [ProductCategory, setProductCategory] = useState([]);
 
   // const [errorMessage, setErrorMessage] = useState('');
   const [isScreenLoading, setIsScreenLoading] = useState(false);
@@ -22,18 +23,23 @@ export default function HomePage() {
   const fetchProducts = async () => {
     setIsScreenLoading(true);
     try {
-      const products = await getProducts();
-      setProducts(products);
-
+      const productData = await getProducts();
+      setProducts(productData);
+      // 取 top7 給ProductSection當作隨機熱銷商品
+      // const hotItems = products
+      //   .filter((item) => {
+      //     const val = item.is_enabled;
+      //     return val === 1 || val === '1' || (val != null && String(val).toLowerCase() === 'true');
+      //   })
+      //   .sort(() => Math.random() - 0.5)
+      //   .slice(0, 7);
       const hotItems = products
-        .filter((item) => {
-          const val = item.is_enabled;
-          return val === 1 || val === '1' || (val != null && String(val).toLowerCase() === 'true');
-        })
+        .filter((item) => Number(item.is_enabled) === 1)
         .sort(() => Math.random() - 0.5)
         .slice(0, 7);
-      // 取 top7 當作隨機熱銷商品
       setHotProducts(hotItems);
+
+      // 取 productData的 Category 種類 給CategorySection使用
     } catch (error) {
       console.error(error);
       // handleApiError(error, setErrorMessage, '取得產品失敗');
@@ -62,7 +68,7 @@ export default function HomePage() {
       </section> */}
       <CategorySection />
 
-      <ProductSection products={hotProducts} />
+      <ProductSection hotProducts={hotProducts} />
 
       <section className="ui-section">
         <div className="ui-container">

@@ -1,0 +1,53 @@
+// 首頁 ProductSection 區塊
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 992px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.product-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+
+  scroll-snap-type: x mandatory;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.product-scroll-item {
+  flex: 0 0 auto;
+  width: 25%;
+
+  scroll-snap-align: start;
+}
+
+/* tablet */
+@media (max-width: 992px) {
+  .product-scroll-item {
+    width: 33%;
+  }
+}
+
+/* mobile */
+@media (max-width: 576px) {
+  .product-scroll-item {
+    width: 50%;
+  }
+}

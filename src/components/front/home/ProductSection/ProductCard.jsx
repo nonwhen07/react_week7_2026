@@ -5,7 +5,6 @@ const ProductCard = ({ productItem }) => {
   //   image: '/img/product-plant.jpg',
   // };
 
-  // 之後可考慮改成輪播
   return (
     <div className="card-product">
       <div className="card-product__image">
