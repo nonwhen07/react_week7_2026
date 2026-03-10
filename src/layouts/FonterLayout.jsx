@@ -7,7 +7,7 @@ export default function FonterLayout() {
   return (
     <>
       <NavBar />
-      <main className="container ui-layout">
+      <main className="ui-layout">
         <Outlet />
       </main>
       <GoTop />

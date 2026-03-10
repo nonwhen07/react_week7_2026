@@ -32,6 +32,9 @@
 
   transition: transform 0.3s;
 }
+.card-category:hover {
+  transform: translateY(-4px);
+}
 
 .card-category__image img {
   width: 100%;
