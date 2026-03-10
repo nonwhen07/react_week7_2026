@@ -1,16 +1,21 @@
-const ProductCard = ({ product }) => {
+const ProductCard = ({ productItem }) => {
+  // const productItem = {
+  //   title: 'Monstera Deliciosa',
+  //   price: 35,
+  //   image: '/img/product-plant.jpg',
+  // };
+
+  // 之後可考慮改成輪播
   return (
     <div className="card-product">
       <div className="card-product__image">
-        <img src={product.imageUrl} alt={product.title} />
+        <img src={productItem.image} alt={productItem.title} loading="lazy" />
       </div>
 
-      <div className="card-product__content">
-        <h3 className="card-product__title">{product.title}</h3>
+      <div className="card-product__body">
+        <h3 className="card-product__title">{productItem.title}</h3>
 
-        <p className="card-product__price">${product.price}</p>
-
-        <button className="ui-btn-primary">Add to Cart</button>
+        <p className="card-product__price">${productItem.price}</p>
       </div>
     </div>
   );

@@ -58,9 +58,6 @@ function ProductsPage() {
 
   // 將try catch交給呼叫的函式處理包含loading，讓getProducts專注在抓資料，並且能在需要時重複使用
   const getProducts = async (page = 1) => {
-    // const res = await axios.get(`${BASE_URL}/products?page=${page}`);
-    // setProducts(res.data.products);
-    // setPageInfo(res.data.pagination);
     const { products, pagination } = await getAdminProducts(page);
     setProducts(products);
     setPageInfo(pagination);
@@ -228,7 +225,6 @@ function ProductsPage() {
   //   // 改由 isDeleteModalOpen 狀態控制 DeleteModal 的開關，並將 tempProduct 傳遞給 DeleteModal 顯示對應的產品資訊
   //   setIsDeleteModalOpen(true);
   // };
-  // 上面寫法已經很不錯了，這裡再稍微優化一下，讓它更具備彈性和健壯性：
   const handleOpenDeleteModal = (product) => {
     setTempProduct(product || DEFAULT_PRODUCT);
     setIsDeleteModalOpen(true);

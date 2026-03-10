@@ -13,10 +13,6 @@ import ProductImage from '@/components/ProductImage';
 import { FaCartPlus, FaSearch } from 'react-icons/fa';
 
 const ProductsPage = () => {
-  // const API_URL = import.meta.env.VITE_API_URL;
-  // const API_PATH = import.meta.env.VITE_API_PATH;
-  // const BASE_URL = `${API_URL}/v2/api/${API_PATH}`;
-
   const [products, setProducts] = useState([]);
   // const [pageInfo, setPageInfo] = useState({});
   // const [tempProduct, setTempProduct] = useState([]);
@@ -30,12 +26,9 @@ const ProductsPage = () => {
   const fetchProducts = async () => {
     setIsScreenLoading(true);
     try {
-      // const res = await axios.get(`${BASE_URL}/products`);
       const products = await getProducts();
       setProducts(products);
     } catch (error) {
-      // console.error(error);
-      // setErrorMessage(error.response?.data?.message || '取得產品失敗');
       handleApiError(error, setErrorMessage, '取得產品失敗');
     } finally {
       setIsScreenLoading(false);
