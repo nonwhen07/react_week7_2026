@@ -1,37 +1,31 @@
 // 首頁 ProductSection 區塊
 
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
 }
 
-@media (max-width: 992px) {
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.section-title {
+  font-size: 28px;
+  font-weight: 600;
 }
 
-@media (max-width: 576px) {
-  .product-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.product-scroll {
+.product-slider {
   display: flex;
   gap: 16px;
   overflow-x: auto;
-  padding-bottom: 8px;
-
   scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding-bottom: 8px;
 
   &::-webkit-scrollbar {
     display: none;
   }
 }
 
-.product-scroll-item {
+.product-slider-item {
   flex: 0 0 auto;
   width: 25%;
 
@@ -40,14 +34,14 @@
 
 /* tablet */
 @media (max-width: 992px) {
-  .product-scroll-item {
+  .product-slider-item {
     width: 33%;
   }
 }
 
 /* mobile */
 @media (max-width: 576px) {
-  .product-scroll-item {
+  .product-slider-item {
     width: 50%;
   }
 }

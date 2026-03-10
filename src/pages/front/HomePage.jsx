@@ -14,8 +14,8 @@ import PageLoader from '@/components/PageLoader';
 
 export default function HomePage() {
   const [products, setProducts] = useState([]);
-  const [hotProducts, setHotProducts] = useState([]);
-  const [ProductCategory, setProductCategory] = useState([]);
+  const [topProducts, setTpProducts] = useState([]);
+  // const [ProductCategory, setProductCategory] = useState([]);
 
   // const [errorMessage, setErrorMessage] = useState('');
   const [isScreenLoading, setIsScreenLoading] = useState(false);
@@ -37,7 +37,7 @@ export default function HomePage() {
         .filter((item) => Number(item.is_enabled) === 1)
         .sort(() => Math.random() - 0.5)
         .slice(0, 7);
-      setHotProducts(hotItems);
+      setTpProducts(hotItems);
 
       // 取 productData的 Category 種類 給CategorySection使用
     } catch (error) {
@@ -68,7 +68,7 @@ export default function HomePage() {
       </section> */}
       <CategorySection />
 
-      <ProductSection hotProducts={hotProducts} />
+      <ProductSection topProducts={topProducts} />
 
       <section className="ui-section">
         <div className="ui-container">
