@@ -69,6 +69,7 @@ https://nonwhen07.github.io/react_week7_2026
 - bootstrap：UI 框架
 - react-router-dom：路由管理
 - react-hook-form：處理表格輸入跟驗證
+- react-redux
 - gh-pages：部署工具
 - sass：樣式預處理器
 
@@ -82,7 +83,8 @@ npm install
 <summary>📌 手動安裝依賴（快速小抄）</summary>
 
 ```bash
-npm install axios react react-dom react-router-dom react-icons react-hook-form bootstrap sass prop-types gh-pages
+npm install axios react-router-dom react-icons react-hook-form @reduxjs/toolkit react-redux bootstrap sass prop-types gh-pages
+
 ```
 
 </details>
