@@ -7,14 +7,18 @@ import { login } from '@/services/authService';
 import { handleApiError } from '@/utils/apiErrorHandler';
 import { showSuccess } from '@/utils/handleApiSuccess';
 
+import { useDispatch } from 'react-redux';
+import { loginSuccess } from '@/features/auth/authSlice';
+
 import PageLoader from '@/components/PageLoader';
 // import BtnLoader from '@/components/BtnLoader';
 
 const LoginPage = () => {
+  // 初始化 dispatch
+  const dispatch = useDispatch();
   // 初始化 navigate
   const navigate = useNavigate();
-  // 環境變數
-  // const API_URL = import.meta.env.VITE_API_URL;
+
   const [account, setAccount] = useState({
     username: 'example@test.com',
     password: 'example',
@@ -24,8 +28,8 @@ const LoginPage = () => {
 
   // 登入表單 - 登入submit事件（使用 async/await）
   const handleLogin = async (e) => {
-    setIsScreenLoading(true);
     e.preventDefault(); // 一定要最前面，避免後續程式碼執行後頁面刷新
+    setIsScreenLoading(true);
 
     setErrorMessage('');
 
@@ -36,19 +40,18 @@ const LoginPage = () => {
     }
 
     try {
-      // const res = await axios.post(`${API_URL}/v2/admin/signin`, account);
       const res = await login(account);
-
       const { token, expired } = res;
-
       document.cookie = `hexToken_week7=${token}; path=/; expires=${new Date(
         expired,
       ).toUTCString()}`;
 
-      // axios.defaults.headers.common['Authorization'] = token;
-
-      // alert('登入成功，將導向後台首頁');
       showSuccess('登入成功，將導向後台首頁');
+      dispatch(
+        loginSuccess({
+          token,
+        }),
+      );
       navigate('/admin');
     } catch (error) {
       // setErrorMessage(error.response?.data?.message || '登入失敗');
