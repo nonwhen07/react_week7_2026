@@ -132,7 +132,7 @@ services/
 ```
 
 ```JS
-export const getCart = async () => {
+export const getCartItems = async () => {
   const res = await axiosInstance.get('/cart');
   return res.data.data;
 };

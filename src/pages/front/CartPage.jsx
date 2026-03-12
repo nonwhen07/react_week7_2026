@@ -6,7 +6,7 @@ import { handleApiError } from '@/utils/apiErrorHandler';
 import { showSuccess } from '@/utils/handleApiSuccess';
 
 import {
-  getCart,
+  getCartItems,
   updateCartItem,
   deleteCartItem,
   clearCart,
@@ -48,7 +48,7 @@ const CartPage = () => {
   // 取得 cart.js 並將try catch交給呼叫的函式處理包含loading，
   // 讓 fetchCart  專注在抓資料，並且能在需要時重複使用
   const fetchCart = async () => {
-    const carts = await getCart();
+    const carts = await getCartItems();
     setCarts(carts);
   };
 

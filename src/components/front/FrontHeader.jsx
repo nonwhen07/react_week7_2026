@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import useCart from '@/hooks/useCart';
+import useCartInit from '@/hooks/useCartInit';
 
 const routes = [
   { path: '/', name: '首頁' },
@@ -11,8 +11,8 @@ const routes = [
   //   { path: '/orders', name: 'Orders' },
 ];
 
-const FrontNavBar = () => {
-  useCart();
+const FrontHeader = () => {
+  useCartInit();
 
   const carts = useSelector((state) => state.cart.carts);
 
@@ -25,7 +25,7 @@ const FrontNavBar = () => {
               <li key={route.path} className="nav-item">
                 <NavLink className="nav-link" aria-current="page" to={route.path}>
                   {/* {route.name} */}
-                  {route.name === 'Cart' ? (
+                  {route.name === 'cart' ? (
                     <div className="position-relative">
                       <i className="fas fa-shopping-cart"></i>
                       <span
@@ -50,4 +50,4 @@ const FrontNavBar = () => {
   );
 };
 
-export default FrontNavBar;
+export default FrontHeader;
