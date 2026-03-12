@@ -3,49 +3,56 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Toast as BSToast } from 'bootstrap'; //由於bootstrap的Toast與套件名稱衝突，所以把bootstrap的Toast取個別名為 'BSToast'
 import { removeMessage } from '@/features/toastSlice';
 
+const TOAST_DURATION = 2000;
+const statusClass = {
+  success: 'toast-success',
+  warning: 'toast-warning',
+  error: 'toast-danger',
+};
+const statusText = {
+  success: '成功',
+  warning: '警告',
+  error: '錯誤',
+};
+
 const ToastList = () => {
   // dispatch 是用來發送 actions 到 Redux store 的，讓我們可以修改 store 的狀態。
   const dispatch = useDispatch();
   const messages = useSelector((state) => state.toast.messages);
   const toastRef = useRef({});
-  const TOAST_DURATION = 2000;
-
-  useEffect(() => {
-    const timers = [];
-
-    messages.forEach((message) => {
-      const messageElement = toastRef.current[message.id];
-
-      if (messageElement) {
-        // 這寫法可能會重複 new instance
-        // const toastInstance = new BSToast(messageElement);
-        // toastInstance.show();
-        //避免重複 new instance
-        const toastInstance = BSToast.getOrCreateInstance(messageElement);
-        toastInstance.show();
-
-        // 確保每個訊息有自己的定時器
-        const timer = setTimeout(() => {
-          dispatch(removeMessage(message.id));
-        }, TOAST_DURATION);
-
-        // 訊息定時器放入timers
-        timers.push(timer);
-      }
-      // 清理定時器，防止多次執行
-      return () => {
-        timers.forEach(clearTimeout);
-      };
-    });
-  }, [messages, dispatch]); // 將 dispatch 加入依賴陣列
 
   const handleDismiss = (message_id) => {
     dispatch(removeMessage(message_id));
   };
 
+  useEffect(() => {
+    if (!messages.length) return;
+
+    const timers = [];
+
+    messages.forEach((message) => {
+      const messageElement = toastRef.current[message.id];
+
+      if (!messageElement) return;
+
+      const toastInstance = BSToast.getOrCreateInstance(messageElement);
+      toastInstance.show();
+
+      const timer = setTimeout(() => {
+        dispatch(removeMessage(message.id));
+      }, TOAST_DURATION);
+
+      timers.push(timer);
+    });
+
+    return () => {
+      timers.forEach(clearTimeout);
+    };
+  }, [messages, dispatch]); // 將 dispatch 加入依賴陣列
+
   return (
     <>
-      <div className="toast show position-fixed top-0 end-0 p-3" style={{ zIndex: 1056 }}>
+      <div className="toast-container position-fixed top-0 end-0 p-3" style={{ zIndex: 1056 }}>
         {messages.map((message) => (
           <div
             key={message.id}
@@ -55,12 +62,8 @@ const ToastList = () => {
             aria-live="assertive"
             aria-atomic="true"
           >
-            <div
-              className={`toast-header text-white ${
-                message.status === 'success' ? 'toast-success' : 'toast-failed'
-              }`}
-            >
-              <strong className="me-auto">{message.status === 'success' ? '成功' : '失敗'}</strong>
+            <div className={`toast-header text-white ${statusClass[message.status]}`}>
+              <strong className="me-auto"> {statusText[message.status]}</strong>
               <button
                 onClick={() => handleDismiss(message.id)}
                 type="button"

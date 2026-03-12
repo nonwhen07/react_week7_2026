@@ -1,3 +1,4 @@
+import { Outlet } from 'react-router-dom';
 // import PageLoader from '@/components/PageLoader';
 import AdminSidebar from '@/components/admin/AdminSidebar';
 import AdminNavbar from '@/components/admin/AdminNavbar';

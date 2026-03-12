@@ -20,7 +20,9 @@ const AdminSidebar = () => {
               <NavLink
                 to={route.path}
                 className={({ isActive }) => `nav-link ${isActive ? 'active text-warning' : ''}`}
-              ></NavLink>
+              >
+                {route.name}
+              </NavLink>
             </li>
           ))}
         </ul>
