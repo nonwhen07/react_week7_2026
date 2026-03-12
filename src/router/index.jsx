@@ -27,7 +27,7 @@
 // 3. vite base: '/react_week7_2026/' → 資源路徑正確
 
 import { createHashRouter } from 'react-router-dom';
-import FonterLayout from '@/layouts/FonterLayout';
+import FrontLayout from '@/layouts/FrontLayout';
 import AdminLayout from '@/layouts/AdminLayout';
 
 import NotFoundPage from '@/pages/NotFoundPage';
@@ -46,7 +46,7 @@ import AdminProductsPage from '@/pages/admin/ProductsPage';
 const routes = [
   {
     path: '/',
-    element: <FonterLayout />,
+    element: <FrontLayout />,
     children: [
       { index: true, element: <HomePage /> },
       { path: 'products', element: <ProductsPage /> },

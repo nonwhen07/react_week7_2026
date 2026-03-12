@@ -1,12 +1,12 @@
 import { Outlet } from 'react-router-dom';
-import NavBar from '@/components/front/NavBar';
+import FrontNavBar from '@/components/front/FrontNavBar';
 import Footer from '@/components/front/Footer';
 import GoTop from '@/components/GoTop';
 
-export default function FonterLayout() {
+export default function FrontLayout() {
   return (
     <>
-      <NavBar />
+      <FrontNavBar />
       <main className="ui-layout">
         <Outlet />
       </main>
