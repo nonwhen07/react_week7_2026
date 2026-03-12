@@ -15,7 +15,7 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   // 初始化 navigate
   const navigate = useNavigate();
-  const { successToast, errorToast, warningToast } = useToast();
+  const { success, error, warning } = useToast();
 
   const [account, setAccount] = useState({
     username: 'example@test.com',
@@ -34,7 +34,7 @@ const LoginPage = () => {
     if (!account.username || !account.password) {
       setErrorMessage('請填寫完整登入資訊');
 
-      warningToast('請填寫完整登入資訊');
+      warning('請填寫完整登入資訊');
       setIsScreenLoading(false);
       return;
     }
@@ -46,7 +46,7 @@ const LoginPage = () => {
         expired,
       ).toUTCString()}`;
 
-      successToast('登入成功，將導向後台首頁');
+      success('登入成功，將導向後台首頁');
       dispatch(
         loginSuccess({
           token,
@@ -57,14 +57,14 @@ const LoginPage = () => {
       setTimeout(() => {
         navigate('/admin');
       }, 500);
-    } catch (error) {
+    } catch (err) {
       // 如果其他page沒有const [errorMessage, setErrorMessage] = useState('');，
       // 去顯示錯誤訊息或其他資訊可以改填 handleApiError(error, undefined, '登出失敗');
       // 或 handleApiError(error, null);
       // ex： const message = handleApiError(error, null, '登出失敗，請重新嘗試。');
-      const errorMessage = handleApiError(error, setErrorMessage, '登出失敗，請重新嘗試。');
+      const errorMessage = handleApiError(err, setErrorMessage, '登出失敗，請重新嘗試。');
 
-      errorToast(errorMessage);
+      error(errorMessage);
     } finally {
       setIsScreenLoading(false);
     }

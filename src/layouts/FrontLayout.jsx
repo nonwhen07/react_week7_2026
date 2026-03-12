@@ -2,8 +2,14 @@ import { Outlet } from 'react-router-dom';
 import FrontHeader from '@/components/front/FrontHeader';
 import FrontFooter from '@/components/front/FrontFooter';
 import GoTop from '@/components/GoTop';
+// import useAuthInit from '@/hooks/useAuthInit';
+import useCartInit from '@/hooks/useCartInit';
 
-export default function FrontLayout() {
+const FrontLayout = () => {
+  // 初始化 Auth、Cart
+  // useAuthInit();
+  useCartInit();
+
   return (
     <>
       <FrontHeader />
@@ -14,4 +20,5 @@ export default function FrontLayout() {
       <FrontFooter />
     </>
   );
-}
+};
+export default FrontLayout;

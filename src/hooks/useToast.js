@@ -4,7 +4,7 @@ import { pushMessage } from '@/features/toastSlice';
 export const useToast = () => {
   const dispatch = useDispatch();
 
-  const successToast = (text) => {
+  const success = (text) => {
     dispatch(
       pushMessage({
         text,
@@ -13,7 +13,7 @@ export const useToast = () => {
     );
   };
 
-  const errorToast = (text) => {
+  const error = (text) => {
     dispatch(
       pushMessage({
         text,
@@ -22,7 +22,7 @@ export const useToast = () => {
     );
   };
 
-  const warningToast = (text) => {
+  const warning = (text) => {
     dispatch(
       pushMessage({
         text,
@@ -32,8 +32,8 @@ export const useToast = () => {
   };
 
   return {
-    successToast,
-    errorToast,
-    warningToast,
+    success,
+    error,
+    warning,
   };
 };

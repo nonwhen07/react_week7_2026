@@ -1,6 +1,8 @@
-import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import useCartInit from '@/hooks/useCartInit';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { FaCart } from 'react-icons/fa';
+import { logout } from '@/services/authService';
+import { useToast } from '@/hooks/useToast';
 
 const routes = [
   { path: '/', name: '首頁' },
@@ -12,9 +14,23 @@ const routes = [
 ];
 
 const FrontHeader = () => {
-  useCartInit();
+  // 初始化 dispatch
+  const dispatch = useDispatch();
+  // 初始化 navigate
+  const navigate = useNavigate();
+  const { success } = useToast();
 
+  // useCartInit(); // UI就專心處理UI，讓父層 FrontLayout 處理商業邏輯
+
+  const isLogin = useSelector((state) => state.auth.isLogin);
   const carts = useSelector((state) => state.cart.carts);
+
+  //加入登出
+  const handleLogout = () => {
+    dispatch(logout());
+    success('已成功登出，將跳轉到前台首頁。');
+    navigate('/');
+  };
 
   return (
     <>
@@ -27,15 +43,15 @@ const FrontHeader = () => {
                   {/* {route.name} */}
                   {route.name === 'cart' ? (
                     <div className="position-relative">
-                      <i className="fas fa-shopping-cart"></i>
-                      <span
-                        className={`position-absolute badge rounded-circle ${
-                          carts?.length ? 'text-bg-danger' : ''
-                        }`}
-                        style={{ bottom: '12px', left: '12px' }}
-                      >
-                        {carts?.length}
-                      </span>
+                      <FaCart size={20} />
+                      {carts?.length > 0 && (
+                        <span
+                          className="position-absolute badge rounded-circle text-bg-danger"
+                          style={{ bottom: '12px', left: '12px' }}
+                        >
+                          {carts.length}
+                        </span>
+                      )}
                     </div>
                   ) : (
                     route.name
@@ -44,6 +60,21 @@ const FrontHeader = () => {
               </li>
             ))}
           </ul>
+          {/* 登入 / 登出區塊 */}
+          {isLogin ? (
+            <>
+              <NavLink to="/dashboard" className="nav-item nav-link me-4">
+                後台
+              </NavLink>
+              <button onClick={handleLogout} className="btn btn-link nav-item nav-link text-danger">
+                登出
+              </button>
+            </>
+          ) : (
+            <NavLink to="/login" className="nav-item nav-link me-4">
+              登入
+            </NavLink>
+          )}
         </div>
       </nav>
     </>

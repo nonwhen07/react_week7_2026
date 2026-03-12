@@ -1,4 +1,3 @@
-// import BackHeader from '@/components/admin/BackHeader';
 // import PageLoader from '@/components/PageLoader';
 import AdminSidebar from '@/components/admin/AdminSidebar';
 import AdminNavbar from '@/components/admin/AdminNavbar';
