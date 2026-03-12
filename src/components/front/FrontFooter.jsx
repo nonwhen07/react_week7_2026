@@ -2,7 +2,7 @@
 
 import { Link } from 'react-router-dom';
 
-const Footer = () => {
+const FrontFooter = () => {
   return (
     <>
       <footer className="bg-dark text-light border-top border-body py-4">
@@ -33,4 +33,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default FrontFooter;
