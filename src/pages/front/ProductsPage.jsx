@@ -12,7 +12,10 @@ import ProductImage from '@/components/ProductImage';
 
 import { FaCartPlus, FaSearch } from 'react-icons/fa';
 
+import { useToast } from '@/hooks/useToast';
+
 const ProductsPage = () => {
+  const { showError } = useToast();
   const [products, setProducts] = useState([]);
   // const [pageInfo, setPageInfo] = useState({});
   // const [tempProduct, setTempProduct] = useState([]);
@@ -29,7 +32,8 @@ const ProductsPage = () => {
       const products = await getProducts();
       setProducts(products);
     } catch (error) {
-      handleApiError(error, setErrorMessage, '取得產品失敗');
+      const errorMessage = handleApiError(error, setErrorMessage, '取得產品失敗，請重新刷新頁面。');
+      showError(errorMessage);
     } finally {
       setIsScreenLoading(false);
     }
@@ -53,9 +57,8 @@ const ProductsPage = () => {
     try {
       await updateCartItem(product_id, qty);
     } catch (error) {
-      // console.error(error);
-      // setErrorMessage(error.response?.data?.message || '加入購物車失敗');
-      handleApiError(error, setErrorMessage, '加入購物車失敗');
+      const errorMessage = handleApiError(error, setErrorMessage, '加入購物車失敗');
+      showError(errorMessage);
     } finally {
       setLoadingItems((prev) => ({
         ...prev,

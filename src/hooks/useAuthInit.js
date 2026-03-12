@@ -5,9 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import { getToken } from '@/utils/auth';
 import { checkAuth } from '@/services/authService';
 import { loginSuccess, logoutAction } from '@/features/auth/authSlice';
-import { showError } from '@/utils/handleApiSuccess';
+
+import { handleApiError } from '@/utils/apiErrorHandler';
+import { useToast } from '@/hooks/useToast';
 
 export const useAuthInit = () => {
+  const { showError } = useToast();
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -33,13 +37,14 @@ export const useAuthInit = () => {
             }),
           );
         }
-      } catch {
+      } catch (error) {
         dispatch(logoutAction());
-        showError('請先登入，將導向登入頁面');
+        const errorMessage = handleApiError(error, null, '請先登入，將導向登入頁面。');
+        showError(errorMessage);
         navigate('/login');
       }
     };
 
     initAuth();
-  }, [dispatch, navigate]);
+  }, [dispatch, navigate, showError]);
 };

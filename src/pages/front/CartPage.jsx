@@ -3,7 +3,8 @@ import { useForm } from 'react-hook-form';
 // import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { handleApiError } from '@/utils/apiErrorHandler';
-import { showSuccess } from '@/utils/handleApiSuccess';
+
+import { useToast } from '@/hooks/useToast';
 
 import {
   getCartItems,
@@ -22,9 +23,7 @@ import ProductImage from '@/components/ProductImage';
 import { FaTrash, FaPlus, FaMinus, FaCartPlus, FaShoppingCart } from 'react-icons/fa';
 
 const CartPage = () => {
-  // const API_URL = import.meta.env.VITE_API_URL;
-  // const API_PATH = import.meta.env.VITE_API_PATH;
-  // const BASE_URL = `${API_URL}/v2/api/${API_PATH}`;
+  const { success, showError, warning } = useToast();
 
   const [carts, setCarts] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
@@ -79,9 +78,8 @@ const CartPage = () => {
       await fetchCart();
       setErrorMessage('');
     } catch (error) {
-      // console.error(error);
-      // setErrorMessage(error.response?.data?.message || '調整購物車數量失敗');
-      handleApiError(error, setErrorMessage, '調整購物車數量失敗');
+      const errorMessage = handleApiError(error, setErrorMessage, '調整購物車數量失敗');
+      showError(errorMessage);
     } finally {
       setLoadingItems((prev) => {
         const newState = { ...prev };
@@ -104,9 +102,8 @@ const CartPage = () => {
       await fetchCart();
       setErrorMessage('');
     } catch (error) {
-      // console.error(error);
-      // setErrorMessage(error.response?.data?.message || '刪除購物車品項失敗');
-      handleApiError(error, setErrorMessage, '刪除購物車品項失敗');
+      const errorMessage = handleApiError(error, setErrorMessage, '刪除購物車品項失敗');
+      showError(errorMessage);
     } finally {
       setLoadingItems((prev) => {
         const newState = { ...prev };
@@ -123,12 +120,11 @@ const CartPage = () => {
       await clearCart();
       await fetchCart();
       setErrorMessage('');
-      // alert('刪除全部購物車成功');
-      showSuccess('刪除全部購物車成功');
+
+      success('清空全部購物車成功。');
     } catch (error) {
-      // console.error(error);
-      // setErrorMessage(error.response?.data?.message || '刪除全部購物車失敗');
-      handleApiError(error, setErrorMessage, '刪除全部購物車失敗');
+      const errorMessage = handleApiError(error, setErrorMessage, '清空全部購物車失敗');
+      showError(errorMessage);
     } finally {
       setIsScreenLoading(false);
     }
@@ -143,12 +139,10 @@ const CartPage = () => {
       await fetchCart();
       setErrorMessage('');
       reset(); // 提交成功後重設表單
-      // alert('已送出訂單');
-      showSuccess('已送出訂單');
+      success('已送出訂單。');
     } catch (error) {
-      // console.error(error);
-      // setErrorMessage(error.response?.data?.message || '訂單送出失敗');
-      handleApiError(error, setErrorMessage, '訂單送出失敗');
+      const errorMessage = handleApiError(error, setErrorMessage, '訂單送出失敗。');
+      showError(errorMessage);
     } finally {
       setIsScreenLoading(false);
     }
@@ -157,11 +151,12 @@ const CartPage = () => {
     if (carts.length < 1) {
       // 如果 購物車為空，直接返回不做任何處理
       setErrorMessage('您的購物車是空的');
-      console.warn('您的購物車是空的');
+      warning('您的購物車是空的');
       return;
     }
 
-    const { message, ...user } = data; //data資料"解構"成message，剩下的打包一起變成user
+    // data資料"解構"成message，剩下的打包一起變成user
+    const { message, ...user } = data;
     const orderData = {
       data: {
         user: user,
@@ -179,14 +174,15 @@ const CartPage = () => {
         await fetchCart();
         setErrorMessage('');
       } catch (error) {
-        console.error(error);
+        const errorMessage = handleApiError(error, setErrorMessage);
+        showError(errorMessage);
       } finally {
         setIsScreenLoading(false);
       }
     };
 
     loadCart();
-  }, []);
+  }, [showError]);
 
   return (
     <>

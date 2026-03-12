@@ -22,13 +22,11 @@ const AdminNavbar = () => {
       await logout();
       clearToken();
       dispatch(logoutAction());
-      // toast.success(dispatch, '登出成功，即將跳轉到登入面');
       success('登出成功，即將跳轉到登入面。');
       navigate('/login');
     } catch (err) {
       console.error('Logout failed:', err);
       showError('登出失敗，請重新嘗試。');
-      // toast.error(dispatch, '登出失敗，請重新嘗試。');
     }
   };
   return (
