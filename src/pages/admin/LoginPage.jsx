@@ -62,9 +62,9 @@ const LoginPage = () => {
       // 去顯示錯誤訊息或其他資訊可以改填 handleApiError(error, undefined, '登出失敗');
       // 或 handleApiError(error, null);
       // ex： const message = handleApiError(error, null, '登出失敗，請重新嘗試。');
-      const message = handleApiError(error, setErrorMessage, '登出失敗，請重新嘗試。');
+      const errorMessage = handleApiError(error, setErrorMessage, '登出失敗，請重新嘗試。');
 
-      errorToast(message);
+      errorToast(errorMessage);
     } finally {
       setIsScreenLoading(false);
     }
