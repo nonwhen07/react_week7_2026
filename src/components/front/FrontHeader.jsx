@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { FaCart } from 'react-icons/fa';
+import { FaShoppingCart } from 'react-icons/fa';
 import { logout } from '@/services/authService';
 import { useToast } from '@/hooks/useToast';
 import { logoutAction } from '@/features/auth/authSlice';
@@ -51,7 +51,7 @@ const FrontHeader = () => {
                 <NavLink className="nav-link" aria-current="page" to={route.path}>
                   {route.path === 'cart' ? (
                     <div className="position-relative">
-                      <FaCart size={20} />
+                      <FaShoppingCart size={20} />
                       {carts?.length > 0 && (
                         <span
                           className="position-absolute badge rounded-circle text-bg-danger"

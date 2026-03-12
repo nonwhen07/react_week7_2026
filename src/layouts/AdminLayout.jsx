@@ -3,9 +3,9 @@ import AdminSidebar from '@/components/admin/AdminSidebar';
 import AdminNavbar from '@/components/admin/AdminNavbar';
 import GoTop from '@/components/GoTop';
 
-import useAuthInit from '@/hooks/useAuthInit';
+import { useAuthInit } from '@/hooks/useAuthInit';
 
-export default function AdminLayout() {
+const AdminLayout = () => {
   // Custom Hook = 可重用的「邏輯」，而不是 UI。
   // 判斷邏輯：① 有 useState / useEffect / useMemo / useCallback
   // ② 跟 UI 無關、③ 可能在別的頁面也會用、④ 讓 Component 太長，所以這段可以抽出去當 Custom Hook
@@ -29,4 +29,6 @@ export default function AdminLayout() {
       <GoTop />
     </>
   );
-}
+};
+
+export default AdminLayout;

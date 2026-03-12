@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { getCartSummary } from '@/services/cartService';
-import { updateCartData } from '@/redux/cartSlice';
+import { updateCartData } from '@/features/cartSlice';
 import { handleApiError } from '@/utils/apiErrorHandler';
 import { useToast } from '@/hooks/useToast';
 

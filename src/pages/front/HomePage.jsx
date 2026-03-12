@@ -4,15 +4,15 @@ import HeroBanner from '@/components/front/home/HeroBanner';
 import CategorySection from '@/components/front/home/CategorySection';
 import ProductSection from '@/components/front/home/ProductSection/ProductSection';
 
-import BrandSection from '@/components/front/home/BrandSection';
-import ReviewSection from '@/components/front/home/ReviewSection';
-import NewsletterSection from '@/components/front/home/NewsletterSection';
+// import BrandSection from '@/components/front/home/BrandSection';
+// import ReviewSection from '@/components/front/home/ReviewSection';
+// import NewsletterSection from '@/components/front/home/NewsletterSection';
 
 import { getProducts } from '@/services/productService';
 
 import PageLoader from '@/components/PageLoader';
 
-export default function HomePage() {
+const HomePage = () => {
   const [products, setProducts] = useState([]);
   const [topProducts, setTpProducts] = useState([]);
   // const [ProductCategory, setProductCategory] = useState([]);
@@ -71,25 +71,21 @@ export default function HomePage() {
       <ProductSection topProducts={topProducts} />
 
       <section className="ui-section">
-        <div className="ui-container">
-          <BrandSection />
-        </div>
+        <div className="ui-container">{/* <BrandSection /> */}</div>
       </section>
 
       <section className="ui-section">
-        <div className="ui-container">
-          <ReviewSection />
-        </div>
+        <div className="ui-container">{/* <ReviewSection /> */}</div>
       </section>
 
       <section className="ui-section">
-        <div className="ui-container">
-          <NewsletterSection />
-        </div>
+        <div className="ui-container">{/* <NewsletterSection /> */}</div>
       </section>
 
       {/* ScreenLoading */}
       <PageLoader show={isScreenLoading} zIndex={2000} />
     </>
   );
-}
+};
+
+export default HomePage;

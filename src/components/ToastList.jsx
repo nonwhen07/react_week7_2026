@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Toast as BSToast } from 'bootstrap'; //由於bootstrap的Toast與套件名稱衝突，所以把bootstrap的Toast取個別名為 'BSToast'
-import { removeMessage } from '@/redux/toastSlice';
+import { removeMessage } from '@/features/toastSlice';
 
 const ToastList = () => {
   // dispatch 是用來發送 actions 到 Redux store 的，讓我們可以修改 store 的狀態。

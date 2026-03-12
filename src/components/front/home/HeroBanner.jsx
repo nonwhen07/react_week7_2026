@@ -6,7 +6,7 @@ const HeroBanner = () => {
 
         <p>盆栽植物 × 花禮 × 園藝生活</p>
 
-        <button className="btn-primary">Shop Plants</button>
+        <button className="btn btn-primary">Shop Plants</button>
       </div>
     </section>
   );
