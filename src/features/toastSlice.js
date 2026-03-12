@@ -10,7 +10,7 @@ const toastSlice = createSlice({
   reducers: {
     pushMessage(state, action) {
       const { text, status } = action.payload;
-      const id = Date.now();
+      const id = Date.now() + Math.random();
       state.messages.push({
         id,
         text,
@@ -19,9 +19,7 @@ const toastSlice = createSlice({
     },
     removeMessage(state, action) {
       const message_id = action.payload;
-      const index = state.messages.findIndex(
-        message => message.id === message_id
-      );
+      const index = state.messages.findIndex((message) => message.id === message_id);
 
       if (index !== -1) {
         state.messages.splice(index, 1);

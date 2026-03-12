@@ -1,17 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import axios from 'axios';
-// import PropTypes from 'prop-types';
 
 import { login } from '@/services/authService';
 import { handleApiError } from '@/utils/apiErrorHandler';
-import { showSuccess } from '@/utils/handleApiSuccess';
 
 import { useDispatch } from 'react-redux';
 import { loginSuccess } from '@/features/auth/authSlice';
-
+import { toast } from '@/utils/toast';
 import PageLoader from '@/components/PageLoader';
-// import BtnLoader from '@/components/BtnLoader';
 
 const LoginPage = () => {
   // 初始化 dispatch
@@ -35,6 +31,7 @@ const LoginPage = () => {
 
     if (!account.username || !account.password) {
       setErrorMessage('請填寫完整登入資訊');
+      toast.warning(dispatch, '請填寫完整登入資訊。');
       setIsScreenLoading(false);
       return;
     }
@@ -45,18 +42,20 @@ const LoginPage = () => {
       document.cookie = `hexToken_week7=${token}; path=/; expires=${new Date(
         expired,
       ).toUTCString()}`;
-
-      showSuccess('登入成功，將導向後台首頁');
+      toast.success(dispatch, '登入成功，將導向後台首頁。');
       dispatch(
         loginSuccess({
           token,
           user: res.user || null,
         }),
       );
-      navigate('/admin');
+      // 延遲導航 0.5 秒，UIUX更好一點點
+      setTimeout(() => {
+        navigate('/admin');
+      }, 500);
     } catch (error) {
-      // setErrorMessage(error.response?.data?.message || '登入失敗');
-      handleApiError(error, setErrorMessage, '登入失敗');
+      handleApiError(error, setErrorMessage, '登出失敗，請重新嘗試。');
+      toast.error(dispatch, '登出失敗，請重新嘗試。');
     } finally {
       setIsScreenLoading(false);
     }

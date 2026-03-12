@@ -11,11 +11,17 @@ const ToastList = () => {
   const TOAST_DURATION = 2000;
 
   useEffect(() => {
+    const timers = [];
+
     messages.forEach((message) => {
       const messageElement = toastRef.current[message.id];
 
       if (messageElement) {
-        const toastInstance = new BSToast(messageElement);
+        // 這寫法可能會重複 new instance
+        // const toastInstance = new BSToast(messageElement);
+        // toastInstance.show();
+        //避免重複 new instance
+        const toastInstance = BSToast.getOrCreateInstance(messageElement);
         toastInstance.show();
 
         // 確保每個訊息有自己的定時器
@@ -23,9 +29,13 @@ const ToastList = () => {
           dispatch(removeMessage(message.id));
         }, TOAST_DURATION);
 
-        // 清理定時器，防止多次執行
-        return () => clearTimeout(timer);
+        // 訊息定時器放入timers
+        timers.push(timer);
       }
+      // 清理定時器，防止多次執行
+      return () => {
+        timers.forEach(clearTimeout);
+      };
     });
   }, [messages, dispatch]); // 將 dispatch 加入依賴陣列
 
@@ -35,7 +45,7 @@ const ToastList = () => {
 
   return (
     <>
-      <div className="position-fixed top-0 end-0 p-3" style={{ zIndex: 1056 }}>
+      <div className="toast show position-fixed top-0 end-0 p-3" style={{ zIndex: 1056 }}>
         {messages.map((message) => (
           <div
             key={message.id}
@@ -45,11 +55,6 @@ const ToastList = () => {
             aria-live="assertive"
             aria-atomic="true"
           >
-            {/* <div
-              className={`toast-header text-white ${
-                message.status === 'success' ? 'bg-success' : 'bg-danger'
-              }`}
-            > */}
             <div
               className={`toast-header text-white ${
                 message.status === 'success' ? 'toast-success' : 'toast-failed'
