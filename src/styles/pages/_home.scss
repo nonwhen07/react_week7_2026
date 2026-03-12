@@ -32,6 +32,52 @@
   scroll-snap-align: start;
 }
 
+.brand-section {
+  background: #faf7f2;
+
+  .brand-image {
+    overflow: hidden;
+    border-radius: 8px;
+
+    img {
+      transition: transform 0.4s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+
+  .brand-content {
+    max-width: 480px;
+
+    h2 {
+      font-weight: 600;
+    }
+
+    p {
+      line-height: 1.8;
+    }
+  }
+}
+
+.garden-tips {
+  background: #f8f9f7;
+
+  .garden-tip-card {
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+
+    img {
+      height: 220px;
+      object-fit: cover;
+    }
+  }
+}
+
 /* tablet */
 @media (max-width: 992px) {
   .product-slider-item {
