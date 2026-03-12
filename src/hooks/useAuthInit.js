@@ -1,30 +1,42 @@
-import { Outlet } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-import AdminSidebar from '@/components/admin/AdminSidebar';
-import AdminNavbar from '@/components/admin/AdminNavbar';
-import GoTop from '@/components/GoTop';
+import { getToken } from '@/utils/auth';
+import { checkAuth } from '@/services/authService';
+import { loginSuccess, logoutAction } from '@/features/auth/authSlice';
+import { showError } from '@/utils/handleApiSuccess';
 
-import useAuthInit from '@/hooks/useAuthInit';
+export const useAuthInit = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-export default function AdminLayout() {
-  // 初始化登入狀態
-  useAuthInit();
+  useEffect(() => {
+    const initAuth = async () => {
+      const token = getToken();
 
-  return (
-    <>
-      <div className="d-flex">
-        <AdminSidebar />
+      // 沒有 token 直接導向登入
+      if (!token) {
+        dispatch(logoutAction());
+        navigate('/login');
+        return;
+      }
 
-        <div className="flex-grow-1">
-          <AdminNavbar />
+      try {
+        await checkAuth();
 
-          <main className="ui-layout container p-4 bg-light min-vh-100">
-            <Outlet />
-          </main>
-        </div>
-      </div>
+        dispatch(
+          loginSuccess({
+            token,
+          }),
+        );
+      } catch {
+        dispatch(logoutAction());
+        showError('請先登入，將導向登入頁面');
+        navigate('/login');
+      }
+    };
 
-      <GoTop />
-    </>
-  );
-}
+    initAuth();
+  }, [dispatch, navigate]);
+};

@@ -17,9 +17,6 @@ const AdminSidebar = () => {
         <ul className="nav flex-column gap-2 fs-5">
           {routes.map((route) => (
             <li key={route.path} className="nav-item">
-              {/* <NavLink className="nav-link" aria-current="page" to={route.path}>
-                {route.name}
-              </NavLink> */}
               <NavLink
                 to={route.path}
                 className={({ isActive }) => `nav-link ${isActive ? 'active text-warning' : ''}`}
