@@ -6,6 +6,7 @@ import { useNavigate, Outlet } from 'react-router-dom';
 import AdminSidebar from '@/components/admin/AdminSidebar';
 import AdminNavbar from '@/components/admin/AdminNavbar';
 import GoTop from '@/components/GoTop';
+import { getToken } from '@/utils/auth';
 
 import { checkAuth } from '@/services/authService';
 import { showError } from '@/utils/handleApiSuccess';
@@ -16,28 +17,34 @@ export default function AdminLayout() {
   const dispatch = useDispatch();
   // 初始化 navigate
   const navigate = useNavigate();
+
+  // 先檢查 token，如果沒有請他重新登入取得 token， 下一步才是 await checkAuth();
   useEffect(() => {
-    // const [isScreenLoading, setIsScreenLoading] = useState(false);
     const initAuth = async () => {
-      // setIsScreenLoading(true);
+      const token = getToken();
+
+      if (!token) {
+        dispatch(logoutAction());
+        navigate('/login');
+        return;
+      }
+
       try {
         await checkAuth();
-        // setIsAuth(true);
-        dispatch(loginSuccess());
+        dispatch(
+          loginSuccess({
+            token,
+          }),
+        );
       } catch {
-        // setIsAuth(false);
-        // alert('請先登入，將導向登入頁面');
         dispatch(logoutAction());
         showError('請先登入，將導向登入頁面');
-        navigate('/login'); // **確認沒有登入就跳轉到 LoginPage**
+        navigate('/login');
       }
-      // finally {
-      //   setIsScreenLoading(false);
-      // }
     };
 
     initAuth();
-  }, []);
+  }, [dispatch, navigate]);
 
   return (
     <>

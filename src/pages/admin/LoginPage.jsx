@@ -50,6 +50,7 @@ const LoginPage = () => {
       dispatch(
         loginSuccess({
           token,
+          user: res.user || null,
         }),
       );
       navigate('/admin');

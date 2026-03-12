@@ -14,12 +14,16 @@ const AdminSidebar = () => {
     <aside className="bg-dark text-white p-3" style={{ width: '240px', minHeight: '100vh' }}>
       <h4 className="mb-4">Admin</h4>
       <nav className="nav flex-column">
-        <ul className="navbar-nav flex-row gap-5 fs-5">
+        <ul className="nav flex-column gap-2 fs-5">
           {routes.map((route) => (
             <li key={route.path} className="nav-item">
-              <NavLink className="nav-link" aria-current="page" to={route.path}>
+              {/* <NavLink className="nav-link" aria-current="page" to={route.path}>
                 {route.name}
-              </NavLink>
+              </NavLink> */}
+              <NavLink
+                to={route.path}
+                className={({ isActive }) => `nav-link ${isActive ? 'active text-warning' : ''}`}
+              ></NavLink>
             </li>
           ))}
         </ul>
