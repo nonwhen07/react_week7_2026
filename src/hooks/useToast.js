@@ -1,30 +1,39 @@
+import { useDispatch } from 'react-redux';
 import { pushMessage } from '@/features/toastSlice';
 
-export const toast = {
-  success(dispatch, text) {
+export const useToast = () => {
+  const dispatch = useDispatch();
+
+  const successToast = (text) => {
     dispatch(
       pushMessage({
         text,
         status: 'success',
       }),
     );
-  },
+  };
 
-  error(dispatch, text) {
+  const errorToast = (text) => {
     dispatch(
       pushMessage({
         text,
         status: 'error',
       }),
     );
-  },
+  };
 
-  warning(dispatch, text) {
+  const warningToast = (text) => {
     dispatch(
       pushMessage({
         text,
         status: 'warning',
       }),
     );
-  },
+  };
+
+  return {
+    successToast,
+    errorToast,
+    warningToast,
+  };
 };

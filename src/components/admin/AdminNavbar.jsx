@@ -4,23 +4,31 @@ import { logout } from '@/services/authService';
 import { clearToken } from '@/utils/auth';
 import { logoutAction } from '@/features/auth/authSlice';
 
-import { toast } from '@/utils/toast';
+// import { toast } from '@/utils/toast';
+
+import { useToast } from '@/hooks/useToast';
 
 const AdminNavbar = () => {
+  // 初始化 dispatch
   const dispatch = useDispatch();
-  const isAuth = useSelector((state) => state.auth.isAuth);
+  // 初始化 navigate
   const navigate = useNavigate();
+
+  const isAuth = useSelector((state) => state.auth.isAuth);
+  const { successToast, errorToast } = useToast();
 
   const handleLogout = async () => {
     try {
       await logout();
       clearToken();
       dispatch(logoutAction());
-      toast.success(dispatch, '登出成功，即將跳轉到登入面');
+      // toast.success(dispatch, '登出成功，即將跳轉到登入面');
+      successToast('登出成功，即將跳轉到登入面。');
       navigate('/login');
     } catch (error) {
       console.error('Logout failed:', error);
-      toast.error(dispatch, '登出失敗，請重新嘗試。');
+      errorToast('登出失敗，請重新嘗試。');
+      // toast.error(dispatch, '登出失敗，請重新嘗試。');
     }
   };
   return (
