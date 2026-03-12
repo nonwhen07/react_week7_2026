@@ -13,7 +13,7 @@ export const useToast = () => {
     );
   };
 
-  const error = (text) => {
+  const showError = (text) => {
     dispatch(
       pushMessage({
         text,
@@ -33,7 +33,7 @@ export const useToast = () => {
 
   return {
     success,
-    error,
+    showError,
     warning,
   };
 };

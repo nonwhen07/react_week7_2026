@@ -15,7 +15,7 @@ const AdminNavbar = () => {
   const navigate = useNavigate();
 
   const isAuth = useSelector((state) => state.auth.isAuth);
-  const { success, error } = useToast();
+  const { success, showError } = useToast();
 
   const handleLogout = async () => {
     try {
@@ -27,7 +27,7 @@ const AdminNavbar = () => {
       navigate('/login');
     } catch (err) {
       console.error('Logout failed:', err);
-      error('登出失敗，請重新嘗試。');
+      showError('登出失敗，請重新嘗試。');
       // toast.error(dispatch, '登出失敗，請重新嘗試。');
     }
   };

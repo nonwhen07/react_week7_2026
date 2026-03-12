@@ -15,7 +15,7 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   // 初始化 navigate
   const navigate = useNavigate();
-  const { success, error, warning } = useToast();
+  const { success, showError, warning } = useToast();
 
   const [account, setAccount] = useState({
     username: 'example@test.com',
@@ -64,7 +64,7 @@ const LoginPage = () => {
       // ex： const message = handleApiError(error, null, '登出失敗，請重新嘗試。');
       const errorMessage = handleApiError(err, setErrorMessage, '登出失敗，請重新嘗試。');
 
-      error(errorMessage);
+      showError(errorMessage);
     } finally {
       setIsScreenLoading(false);
     }

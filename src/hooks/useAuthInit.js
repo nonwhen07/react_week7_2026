@@ -18,7 +18,7 @@ export const useAuthInit = () => {
       // 沒有 token 直接導向登入
       if (!token) {
         dispatch(logoutAction());
-        navigate('/login');
+        // navigate('/login'); // 註解掉，避免前台以檢查並 navigate('/login');
         return;
       }
 

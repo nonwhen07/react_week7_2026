@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { FaCart } from 'react-icons/fa';
 import { logout } from '@/services/authService';
 import { useToast } from '@/hooks/useToast';
+import { logoutAction } from '@/features/auth/authSlice';
+import { handleApiError } from '@/utils/apiErrorHandler';
 
 const routes = [
   { path: '/', name: '首頁' },
@@ -18,7 +20,7 @@ const FrontHeader = () => {
   const dispatch = useDispatch();
   // 初始化 navigate
   const navigate = useNavigate();
-  const { success } = useToast();
+  const { success, showError } = useToast();
 
   // useCartInit(); // UI就專心處理UI，讓父層 FrontLayout 處理商業邏輯
 
@@ -26,8 +28,15 @@ const FrontHeader = () => {
   const carts = useSelector((state) => state.cart.carts);
 
   //加入登出
-  const handleLogout = () => {
-    dispatch(logout());
+  const handleLogout = async () => {
+    try {
+      await logout(); // 呼叫 API
+    } catch (err) {
+      const errorMessage = handleApiError(err, null, '登出失敗，請稍後再試。');
+      showError(errorMessage);
+    }
+
+    dispatch(logoutAction()); // 清 Redux
     success('已成功登出，將跳轉到前台首頁。');
     navigate('/');
   };
@@ -40,8 +49,7 @@ const FrontHeader = () => {
             {routes.map((route) => (
               <li key={route.path} className="nav-item">
                 <NavLink className="nav-link" aria-current="page" to={route.path}>
-                  {/* {route.name} */}
-                  {route.name === 'cart' ? (
+                  {route.path === 'cart' ? (
                     <div className="position-relative">
                       <FaCart size={20} />
                       {carts?.length > 0 && (
