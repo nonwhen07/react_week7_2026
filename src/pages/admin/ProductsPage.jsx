@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-// import axios from 'axios';
-
 import {
   getAdminProducts,
   createProduct,
@@ -14,11 +12,6 @@ import ProductModal from '@/components/admin/ProductModal';
 import DeleteModal from '@/components/admin/DeleteModal';
 import StarRating from '@/components/admin/StarRating';
 import PageLoader from '@/components/PageLoader';
-
-// production code 常見命名：
-// DEFAULT_PRODUCT
-// INITIAL_PRODUCT
-// EMPTY_PRODUCT
 
 // Modal 資料狀態的預設值，由於六角API可以彈性新增欄位(rating: 0,)，
 // 因此在這裡也要確保即使API回傳的產品物件中沒有rating欄位，
@@ -37,11 +30,76 @@ const DEFAULT_PRODUCT = {
   rating: 0, // ⭐新增
 };
 
+/**
+ * =========================================
+ * TODO: ProductsPage Refactor Plan
+ * =========================================
+ *
+ * Current status:
+ * - Page logic slightly large but still manageable
+ * - Service layer already separated (productService)
+ * - Modal components already separated
+ *
+ * Future improvements (when time allows):
+ *
+ * 1️⃣ Extract Products Logic Hook
+ * --------------------------------
+ * Move product data logic into:
+ *
+ * hooks/useProducts.js
+ *
+ * Responsible for:
+ * - getProducts
+ * - pagination handling
+ * - loading state
+ *
+ *
+ * 2️⃣ Extract Modal Logic
+ * --------------------------------
+ * Move modal related state:
+ *
+ * hooks/useProductModal.js
+ *
+ * Responsible for:
+ * - tempProduct
+ * - modalMode
+ * - open/close modal
+ * - normalizeProduct
+ *
+ *
+ * 3️⃣ Move Validation to Utils
+ * --------------------------------
+ * Move validateProduct() to:
+ *
+ * utils/productValidator.js
+ *
+ *
+ * 4️⃣ Table Component Separation
+ * --------------------------------
+ * Extract UI table to:
+ *
+ * components/admin/ProductTable.jsx
+ *
+ * Props:
+ * - products
+ * - onEdit
+ * - onDelete
+ *
+ *
+ * 5️⃣ Optional Improvements
+ * --------------------------------
+ * - Add ProductPreviewModal
+ * - Add optimistic update
+ * - Add toast success message
+ *
+ *
+ * Note:
+ * --------------------------------
+ * Do NOT refactor now to avoid interrupting
+ * current UI and layout development.
+ *
+ */
 function ProductsPage() {
-  // 環境變數
-  // const API_URL = import.meta.env.VITE_API_URL;
-  // const API_PATH = import.meta.env.VITE_API_PATH;
-  // const BASE_URL = `${API_URL}/v2/api/${API_PATH}/admin`;
   // 管理Modal元件開關
   const [isProductModalOpen, setIsProductModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -52,7 +110,7 @@ function ProductsPage() {
   const [isScreenLoading, setIsScreenLoading] = useState(false);
   // Modal 錯誤訊息狀態
   const [modalError, setModalError] = useState('');
-
+  // 資料狀態
   const [tempProduct, setTempProduct] = useState(DEFAULT_PRODUCT);
   const [modalMode, setModalMode] = useState(null);
 

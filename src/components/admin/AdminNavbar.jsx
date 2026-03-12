@@ -33,7 +33,7 @@ const AdminNavbar = () => {
   };
   return (
     <header className="navbar navbar-light bg-white border-bottom px-4">
-      {isAuth ? <span>已登入</span> : <span>未登入</span>}
+      {isAuth ? <span>Admin已登入</span> : <span>未登入</span>}
       <span className="navbar-brand mb-0 h5">Admin Dashboard</span>
 
       <button onClick={handleLogout} type="button" className="btn btn-secondary">
