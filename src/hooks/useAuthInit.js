@@ -11,6 +11,7 @@ export const useAuthInit = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // 由於沒有回傳會員名稱和權限狀態的API，userSlice先製作後暫時不使用
   useEffect(() => {
     const initAuth = async () => {
       const token = getToken();
@@ -23,13 +24,15 @@ export const useAuthInit = () => {
       }
 
       try {
-        await checkAuth();
+        const res = await checkAuth();
 
-        dispatch(
-          loginSuccess({
-            token,
-          }),
-        );
+        if (res.success) {
+          dispatch(
+            loginSuccess({
+              token,
+            }),
+          );
+        }
       } catch {
         dispatch(logoutAction());
         showError('請先登入，將導向登入頁面');

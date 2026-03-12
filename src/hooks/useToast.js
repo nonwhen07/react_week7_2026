@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { pushMessage } from '@/features/toastSlice';
+import { pushMessage } from '@/features/toast/toastSlice';
 
 export const useToast = () => {
   const dispatch = useDispatch();
