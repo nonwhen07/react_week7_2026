@@ -10,14 +10,12 @@ const CategorySection = () => {
   return (
     <section className="ui-section">
       <div className="ui-container">
-        <div className="row g-3 g-lg-4">
-          <div className="col-lg-3 col-md-6 col-6">
-            {categories.map((category) => (
-              <div key={category.id} className="col-lg-3 col-md-6 col-6">
-                <CategoryCard category={category} />
-              </div>
-            ))}
-          </div>
+        <div className="row d-flex g-3 g-lg-4">
+          {categories.map((category) => (
+            <div key={category.id} className=" col-lg-3 col-md-6 col-6">
+              <CategoryCard category={category} />
+            </div>
+          ))}
         </div>
       </div>
     </section>

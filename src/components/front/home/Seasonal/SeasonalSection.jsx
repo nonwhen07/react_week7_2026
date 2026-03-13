@@ -1,4 +1,4 @@
-import CategoryCard from '@/components/front/home/Seasonal/SeasonalCard';
+import SeasonalProductCard from '@/components/front/home/Seasonal/SeasonalCard';
 const seasonalProducts = [
   {
     id: 1,
