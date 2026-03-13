@@ -1,5 +1,5 @@
-@use '../helpers/variables' as *;
 @use 'sass:map';
+@use './variables' as *;
 
 @mixin respond($point) {
   $size: map.get($breakpoints, $point);

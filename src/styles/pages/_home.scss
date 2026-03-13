@@ -12,6 +12,15 @@
   font-weight: 600;
 }
 
+.seasonal-section {
+  background: #f7faf7;
+
+  .card-img-top {
+    height: 220px;
+    object-fit: cover;
+  }
+}
+
 .product-slider {
   display: flex;
   gap: 16px;

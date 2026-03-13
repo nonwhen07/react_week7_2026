@@ -53,11 +53,7 @@ const HomePage = () => {
   return (
     <>
       {/* 保留bootstarp-container，原因是我要用bootstarp他的排版 */}
-      <section className="ui-section">
-        <div className="ui-container">
-          <HeroBanner />
-        </div>
-      </section>
+      <HeroBanner />
 
       <CategorySection />
 
