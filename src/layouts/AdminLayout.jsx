@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 // import PageLoader from '@/components/PageLoader';
 import AdminSidebar from '@/components/admin/AdminSidebar';
-import AdminNavbar from '@/components/admin/AdminNavbar';
+import AdminHeader from '@/components/admin/AdminHeader';
 import GoTop from '@/components/GoTop';
 
 import { useAuthInit } from '@/hooks/useAuthInit';
@@ -15,19 +15,33 @@ const AdminLayout = () => {
 
   return (
     <>
-      <div className="d-flex">
-        {/* Sidebar */}
+      {/* <div className="d-flex">
         <AdminSidebar />
         <div className="flex-grow-1">
-          {/* Top Navbar */}
-          <AdminNavbar />
-          {/* Page Content */}
+          <AdminHeader />
           <main className="ui-layout container p-4 bg-light min-vh-100">
             <Outlet />
           </main>
         </div>
       </div>
-      <GoTop />
+      <GoTop /> */}
+
+      <div className="admin">
+        <div className="admin-layout">
+          {/* Top Navbar */}
+          <AdminHeader />
+          <div className="admin-wrapper">
+            {/* Sidebar */}
+            <AdminAside />
+            <main className="admin-main">
+              <div className="admin-content">
+                <Outlet />
+              </div>
+            </main>
+          </div>
+          <GoTop />
+        </div>
+      </div>
     </>
   );
 };

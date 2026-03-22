@@ -30,17 +30,16 @@ import { createHashRouter } from 'react-router-dom';
 import FrontLayout from '@/layouts/FrontLayout';
 import AdminLayout from '@/layouts/AdminLayout';
 
-import NotFoundPage from '@/pages/NotFoundPage';
-
 import HomePage from '@/pages/front/HomePage';
 import ProductsPage from '@/pages/front/ProductsPage';
 import ProductDetailPage from '@/pages/front/ProductDetailPage';
 import CartPage from '@/pages/front/CartPage';
-
+import NotFoundPage from '@/pages/front/NotFoundPage';
 import LoginPage from '@/pages/admin/LoginPage';
 
 import DashboardPage from '@/pages/admin/DashboardPage';
 import AdminProductsPage from '@/pages/admin/ProductsPage';
+import AdminNotFoundPage from '@/pages/admin/AdminNotFoundPage';
 
 // 優化寫法：先定義 routes 陣列，再傳給 createHashRouter，結構更清晰也方便上 GitHub Pages自動轉換網址時的維護。
 const routes = [
@@ -53,13 +52,13 @@ const routes = [
       { path: 'product/:product_id', element: <ProductDetailPage /> },
       { path: 'cart', element: <CartPage /> },
       { path: 'login', element: <LoginPage /> },
+      {
+        // 404頁面
+        path: '*',
+        element: <NotFoundPage />,
+      },
     ],
   },
-  // {
-  //   path: '/login',
-  //   element: <LoginPage />,
-  // },
-
   {
     path: '/admin',
     element: <AdminLayout />,
@@ -70,13 +69,12 @@ const routes = [
         element: <DashboardPage />,
       },
       { path: 'products', element: <AdminProductsPage /> },
+      {
+        // Admin 404頁面
+        path: '*',
+        element: <AdminNotFoundPage />,
+      },
     ],
-  },
-
-  {
-    // 404頁面
-    path: '*',
-    element: <NotFoundPage />,
   },
 ];
 

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import {
   FaTachometerAlt,
@@ -6,9 +7,10 @@ import {
   FaTicketAlt,
   FaNewspaper,
   FaHome,
+  FaAlignJustify,
 } from 'react-icons/fa';
 
-const routes = [
+const menu = [
   {
     path: '/admin',
     name: 'Dashboard',
@@ -44,31 +46,36 @@ const routes = [
 ];
 
 const AdminSidebar = () => {
+  const [collapsed, setCollapsed] = useState(false);
   return (
-    <aside className="bg-dark text-white p-3" style={{ width: '240px', minHeight: '100vh' }}>
-      <h4 className="mb-4">Admin</h4>
-      <nav className="nav flex-column">
-        <ul className="nav flex-column gap-2 fs-5">
-          {/* end={route.path === '/admin'} ， React Router： end = exact match 
+    <aside className={`admin-sidebar ${collapsed ? 'collapsed' : ''}`}>
+      {/* Header */}
+      <div className="admin-sidebar__brand">
+        <span>My Admin</span>
+        <button onClick={() => setCollapsed(!collapsed)}>
+          <FaAlignJustify size={18} />
+        </button>
+      </div>
+      {/* Menu */}
+      <nav className="admin-sidebar__menu">
+        {/* end={route.path === '/admin'} ， React Router： end = exact match 
           意思變成： /admin ✔ /admin/productlist ✖ ，所以： 後台首頁 active 產品列表 inactive */}
-          {routes.map((route) => {
-            const Icon = route.icon;
-            return (
-              <li key={route.path} className="nav-item gap-1">
-                <NavLink
-                  to={route.path}
-                  end={route.end}
-                  title={route.title}
-                  aria-label={route.title}
-                  className={({ isActive }) => `nav-link ${isActive ? 'active text-warning' : ''}`}
-                >
-                  <Icon className="me-2" size={18} />
-                  {route.name}
-                </NavLink>
-              </li>
-            );
-          })}
-        </ul>
+        {menu.map((menuItem) => {
+          const Icon = menuItem.icon;
+          return (
+            <NavLink
+              key={menuItem.path}
+              to={menuItem.path}
+              end={menuItem.end}
+              title={menuItem.title}
+              aria-label={menuItem.title}
+              className={({ isActive }) => `nav-link ${isActive ? 'active text-warning' : ''}`}
+            >
+              <Icon className="me-2" size={18} />
+              {menuItem.name}
+            </NavLink>
+          );
+        })}
       </nav>
     </aside>
   );
