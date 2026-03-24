@@ -43,12 +43,12 @@ const FrontHeader = () => {
 
   return (
     <>
-      <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+      <nav className="navbar header border-bottom border-body">
         <div className="container">
           <ul className="navbar-nav flex-row gap-5 fs-5">
             {routes.map((route) => (
               <li key={route.path} className="nav-item">
-                <NavLink className="nav-link" aria-current="page" to={route.path}>
+                <NavLink className="nav-link text-light" aria-current="page" to={route.path}>
                   {route.path === 'cart' ? (
                     <div className="position-relative">
                       <FaShoppingCart size={20} />
@@ -79,7 +79,7 @@ const FrontHeader = () => {
               </button>
             </>
           ) : (
-            <NavLink to="/login" className="nav-item nav-link me-4">
+            <NavLink to="/login" className="nav-item nav-link text-light me-4">
               登入
             </NavLink>
           )}

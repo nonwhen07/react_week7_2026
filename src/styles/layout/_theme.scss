@@ -3,8 +3,20 @@
 
 // 預設（沒有 theme）
 :root {
-  --season-primary: #2f6d4f;
-  --season-bg: #f8f9fa;
+  --season-primary: #$color-primary;
+  --season-bg: #$color-bg;
+}
+
+.theme-light {
+  --color-bg: #$color-bg;
+  --color-text: #$color-text;
+  --color-primary: #$color-primary;
+}
+
+.theme-dark {
+  --color-bg: #1a1a1a;
+  --color-text: #f1f1f1;
+  --color-primary: #4caf50;
 }
 
 // 🧧 春節

@@ -11,8 +11,8 @@
 
 @use './layout/layout';
 @use './layout/header';
-@use './layout/theme';
 @use './layout/footer';
+@use './layout/theme';
 
 // @use './layout/hero';
 // @use './layout/articles';
@@ -36,7 +36,7 @@
 // @use './components/checkbox';
 // @use './components/dropdown-skin';
 // @use './components/searchbar';
-// // @use './components/cards';
+// @use './components/cards';
 
 // @use './pages/index';
 @use './pages/home';

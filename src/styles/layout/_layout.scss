@@ -23,18 +23,18 @@
   }
 }
 
+// .ui-section {
+//   padding: 60px 0;
+//   background: $color-bg;
+// }
+
+// .ui-section-alt {
+//   background: $neutral-200;
+// }
+
 // section 的內容區域 1296px
 .ui-container {
   max-width: 1296px;
   margin: 0 auto;
   padding: 0px;
-}
-
-// 範例： section 背景色系變體寫法
-.ui-section--light {
-  background: $ui-bg-default;
-}
-
-.ui-section--dark {
-  background: $ui-color-default;
 }

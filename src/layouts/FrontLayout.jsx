@@ -10,14 +10,20 @@ const FrontLayout = () => {
   useAuthInit();
   useCartInit();
 
+  const mode = 'theme-light'; // or theme-dark=>還沒設定
+  // const season = 'theme-christmas';
+  const season = 'theme-christmas';
+
   return (
     <>
-      <FrontHeader />
-      <main className="ui-layout">
-        <Outlet />
-      </main>
-      <GoTop />
-      <FrontFooter />
+      <div className={`${mode} ${season}`}>
+        <FrontHeader />
+        <main className="ui-layout">
+          <Outlet />
+        </main>
+        <GoTop />
+        <FrontFooter />
+      </div>
     </>
   );
 };

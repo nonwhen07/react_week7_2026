@@ -14,7 +14,12 @@
 }
 
 .seasonal-section {
+  opacity: 1;
+  transition: 0.5s;
   background: var(--season-bg, $color-bg);
+  &.inactive {
+    opacity: 0.3;
+  }
 
   .card-img-top {
     height: 220px;

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const FrontFooter = () => {
   return (
     <>
-      <footer className="bg-dark text-light border-top border-body py-4">
+      <footer className="footer border-top border-body py-4">
         <div className="container text-center">
           <div className="">
             <p className="mb-0">

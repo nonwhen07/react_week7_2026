@@ -35,9 +35,6 @@ const GoTop = () => {
       onClick={scrollToTop}
       aria-label="回到頂部"
     >
-      {/* <i className='bi bi-chevron-up'></i> */}
-      {/* <span className="material-icons">keyboard_arrow_up</span> */}
-      {/* <ChevronUp className="ui-breadcrumb__separator" size={20} /> */}
       <FaAngleUp size={20} />
     </button>
   );
