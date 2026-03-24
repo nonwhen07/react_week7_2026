@@ -1,50 +1,74 @@
-// Neutral
-// $ui-neutral-950: #0a0a0a;
-$ui-neutral-800: #262626;
-$ui-neutral-600: #525252;
-$ui-neutral-500: #777777;
-$ui-neutral-400: #a3a3a3;
-$ui-neutral-200: #e5e5e5;
-$ui-neutral-100: #f0f0f0;
-$ui-neutral-50: #ffffff;
+// // Neutral
+// // $ui-neutral-950: #0a0a0a;
+// $ui-neutral-800: #262626;
+// $ui-neutral-600: #525252;
+// $ui-neutral-500: #777777;
+// $ui-neutral-400: #a3a3a3;
+// $ui-neutral-200: #e5e5e5;
+// $ui-neutral-100: #f0f0f0;
+// $ui-neutral-50: #ffffff;
 
-// Blue
-$ui-blue-700: #2f6382;
-$ui-blue-500: #85bdde;
-$ui-blue-200: #c9e9f4;
+// // Blue
+// $ui-blue-700: #2f6382;
+// $ui-blue-500: #85bdde;
+// $ui-blue-200: #c9e9f4;
 
-// Yellow / Orange（Accent）
-$ui-yellow-400: #fec631;
-$ui-orange-500: #f59004;
+// // Yellow / Orange（Accent）
+// $ui-yellow-400: #fec631;
+// $ui-orange-500: #f59004;
 
-// Brand
-$ui-color-primary: $ui-blue-500;
-$ui-color-primary-hover: $ui-blue-700;
+// // Brand
+// $ui-color-primary: $ui-blue-500;
+// $ui-color-primary-hover: $ui-blue-700;
 
-// Secondary（次行動）
-$ui-color-secondary: $ui-blue-200;
+// // Secondary（次行動）
+// $ui-color-secondary: $ui-blue-200;
 
-// Status
-$ui-color-warning: $ui-yellow-400;
-$ui-color-danger: $ui-orange-500;
+// // Status
+// $ui-color-warning: $ui-yellow-400;
+// $ui-color-danger: $ui-orange-500;
 
-//color-default
-$ui-color-default: $ui-neutral-500;
+// //color-default
+// $ui-color-default: $ui-neutral-500;
 
-// Navigation
-$ui-nav-link: $ui-neutral-800;
-$ui-nav-link-hover: $ui-blue-500;
-$ui-nav-link-active: $ui-blue-700;
+// // Navigation
+// $ui-nav-link: $ui-neutral-800;
+// $ui-nav-link-hover: $ui-blue-500;
+// $ui-nav-link-active: $ui-blue-700;
 
-// Text
-$ui-text-primary: $ui-neutral-800;
-$ui-text-secondary: $ui-neutral-600;
-$ui-text-muted: $ui-neutral-400;
+// // Text
+// $ui-text-primary: $ui-neutral-800;
+// $ui-text-secondary: $ui-neutral-600;
+// $ui-text-muted: $ui-neutral-400;
 
-// Background / Border
-$ui-bg-default: $ui-neutral-50;
-$ui-bg-subtle: $ui-neutral-100;
-$ui-border-default: $ui-neutral-200;
+// // Background / Border
+// $ui-bg-default: $ui-neutral-50;
+// $ui-bg-subtle: $ui-neutral-100;
+// $ui-border-default: $ui-neutral-200;
+
+// 品牌基礎色
+$color-primary: #2f6d4f; // 主綠
+$color-accent: #f4a261; // 點綴（暖色）
+$color-bg: #f8f9fa;
+$color-text: #2b2b2b;
+
+// 中性色（UI基底）
+$neutral-100: #ffffff;
+$neutral-200: #f1f3f5;
+$neutral-300: #dee2e6;
+$neutral-400: #a3a3a3;
+$neutral-500: #777777;
+$neutral-600: #525252;
+$neutral-700: #262626;
+
+// 語意色（元件用）
+$ui-success: #4caf50;
+$ui-warning: #ff9800;
+$ui-danger: #e53935;
+
+// 語意色（元件用）
+$ui-bg-default: $color-bg;
+$ui-color-default: $neutral-500;
 
 // breakpoints 視覺分段點-mobile/pad/desktop/desktop-xl
 $breakpoints: (

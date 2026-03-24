@@ -1,4 +1,5 @@
-// 首頁 ProductSection 區塊
+@use '../helpers/variables' as *;
+@use 'sass:color';
 
 .section-header {
   display: flex;
@@ -13,11 +14,19 @@
 }
 
 .seasonal-section {
-  background: #f7faf7;
+  background: var(--season-bg, $color-bg);
 
   .card-img-top {
     height: 220px;
     object-fit: cover;
+  }
+
+  .section-title {
+    color: var(--season-primary, $color-primary);
+  }
+
+  .btn {
+    background: var(--season-primary, $color-primary);
   }
 }
 

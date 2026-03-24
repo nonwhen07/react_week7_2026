@@ -1,47 +1,13 @@
-.card-product {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+@use '../helpers/variables' as *;
+@use 'sass:color';
 
-  padding: 16px;
+.ui-card {
+  background: $neutral-100;
   border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: 0.3s;
 
-  transition: all 0.3s;
-}
-
-.card-product__image img {
-  width: 100%;
-  aspect-ratio: 1/1;
-  object-fit: cover;
-}
-
-.card-product__title {
-  font-size: 16px;
-}
-
-.card-product__price {
-  font-weight: 600;
-}
-
-.card-category {
-  text-align: center;
-  cursor: pointer;
-
-  border-radius: 16px;
-  overflow: hidden;
-
-  transition: transform 0.3s;
-}
-.card-category:hover {
-  transform: translateY(-4px);
-}
-
-.card-category__image img {
-  width: 100%;
-  aspect-ratio: 4/3;
-  object-fit: cover;
-}
-
-.card-category__title {
-  padding: 12px;
+  &:hover {
+    transform: translateY(-4px);
+  }
 }

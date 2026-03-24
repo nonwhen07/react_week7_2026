@@ -10,18 +10,19 @@
 // @use './base/base';
 
 @use './layout/layout';
+@use './layout/header';
+@use './layout/theme';
+@use './layout/footer';
+
 // @use './layout/hero';
-// @use './layout/header';
 // @use './layout/articles';
 // @use './layout/herosection';
 // @use './layout/infosection';
 // @use './layout/hotspot';
-// @use './layout/storedetail';
 // @use './layout/trending';
 // @use './layout/scam';
 // @use './layout/repostpost';
 // @use './layout/findStores';
-// @use './layout/footer';
 
 @use './components/buttons';
 @use './components/spinners';

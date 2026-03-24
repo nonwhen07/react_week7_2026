@@ -27,8 +27,9 @@ const seasonalProducts = [
 ];
 
 const SeasonalSection = () => {
+  const themeClass = 'theme-christmas';
   return (
-    <section className="ui-section seasonal-section">
+    <section className={`seasonal-section ${themeClass}`}>
       <div className="ui-container">
         <div className="text-center mb-5">
           <h2>Seasonal Collection</h2>

@@ -11,9 +11,9 @@
   border-radius: 50%;
 
   background: conic-gradient(
-    $ui-yellow-400 0deg,
-    color.mix($ui-yellow-400, $ui-blue-500, 50%) 60deg,
-    $ui-blue-500 120deg,
+    $color-primary 0deg,
+    color.mix($color-accent, $ui-warning, 50%) 60deg,
+    $ui-warning 120deg,
     transparent 120deg 360deg
   );
 

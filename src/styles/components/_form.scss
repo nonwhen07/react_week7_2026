@@ -1,0 +1,13 @@
+@use '../helpers/variables' as *;
+@use 'sass:color';
+
+.ui-input {
+  border: 1px solid $neutral-300;
+  border-radius: 6px;
+  padding: 8px 12px;
+
+  &:focus {
+    border-color: $color-primary;
+    outline: none;
+  }
+}
