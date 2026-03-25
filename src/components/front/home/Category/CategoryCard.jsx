@@ -20,6 +20,9 @@ const CategoryCard = ({ category }) => {
       </div>
 
       <h3 className="card-category__title">{category.title}</h3>
+      {/* <div className="card-category__overlay">
+        <span>{category.title}</span>
+      </div> */}
     </div>
   );
 };

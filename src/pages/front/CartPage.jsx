@@ -1,9 +1,9 @@
 import { useEffect, useState, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
-// import axios from 'axios';
+
 import { Link } from 'react-router-dom';
 import { handleApiError } from '@/utils/apiErrorHandler';
-
+// hooks
 import { useToast } from '@/hooks/useToast';
 
 import {
@@ -167,6 +167,7 @@ const CartPage = () => {
   });
 
   // 畫面渲染後初步載入購物車
+  /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     const loadCart = async () => {
       setIsScreenLoading(true);
@@ -182,7 +183,7 @@ const CartPage = () => {
     };
 
     loadCart();
-  }, [showError]);
+  }, []);
 
   return (
     <>

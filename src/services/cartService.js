@@ -11,7 +11,16 @@ export const getCartSummary = async () => {
   return res.data.data;
 };
 
-// 加入購物車
+// 加入單一品項 到 購物車
+export const addsCartItem = async (productId, qty) => {
+  await axiosAPI.post(`/cart/`, {
+    data: {
+      product_id: productId,
+      qty: Number(qty),
+    },
+  });
+};
+// 購物車清單中 調整數量
 export const updateCartItem = async (cartId, productId, qty) => {
   await axiosAPI.put(`/cart/${cartId}`, {
     data: {

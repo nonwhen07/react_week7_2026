@@ -15,7 +15,6 @@ import PageLoader from '@/components/PageLoader';
 
 const HomePage = () => {
   const { showError } = useToast();
-  const [products, setProducts] = useState([]);
   const [topProducts, setTpProducts] = useState([]);
   // const [ProductCategory, setProductCategory] = useState([]);
 
@@ -28,7 +27,7 @@ const HomePage = () => {
     setIsScreenLoading(true);
     try {
       const productData = await getProducts();
-      setProducts(productData);
+
       // 取 top7 給ProductSection當作隨機熱銷商品
       const hotItems = productData
         .filter((item) => Number(item.is_enabled) === 1)
@@ -45,7 +44,7 @@ const HomePage = () => {
       setIsScreenLoading(false);
     }
   };
-
+  /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     fetchProducts();
   }, []);

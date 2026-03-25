@@ -8,6 +8,16 @@ export const getProducts = async () => {
   return res.data.products;
 };
 
+// 取得商品列表 By Category
+export const getProductsByCategory = async (category = 'Tools') => {
+  const res = await axiosAPI.get('/products', {
+    params: {
+      category: category,
+    },
+  });
+  return res.data.products;
+};
+
 // 取得商品詳細
 export const getProductDetail = async (productId) => {
   const res = await axiosAPI.get(`/product/${productId}`);

@@ -32,10 +32,9 @@ const SeasonalSection = () => {
     <section className="seasonal-section">
       <div className="ui-container">
         <div className="text-center mb-5">
-          <h2>Seasonal Collection</h2>
-          <p className="text-muted">為即將到來的節日準備特別花禮</p>
+          <h2 className="section-title">Seasonal Collection</h2>
+          <p className="section-subtitle">為即將到來的節日準備好花禮</p>
         </div>
-
         <div className="row g-4">
           {seasonalProducts.map((product) => (
             <div key={product.id} className="col-md-6 col-lg-3">

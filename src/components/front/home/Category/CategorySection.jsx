@@ -15,6 +15,10 @@ const CategorySection = () => {
   return (
     <section id="category" className="category-section ui-section">
       <div className="ui-container">
+        <div className="text-center mb-5">
+          <h2 className="section-title">Shop by Category</h2>
+          <p className="section-subtitle">探索不同風格的植物與花藝</p>
+        </div>
         <div className="row d-flex g-3 g-lg-4">
           {categories.map((category) => (
             <div key={category.id} className=" col-lg-3 col-md-6 col-6">

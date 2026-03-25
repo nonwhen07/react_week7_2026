@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { getProductDetail } from '@/services/productService';
-import { updateCartItem } from '@/services/cartService';
+import { addsCartItem } from '@/services/cartService';
 import { handleApiError } from '@/utils/apiErrorHandler';
 
 import PageLoader from '@/components/PageLoader';
@@ -29,6 +29,7 @@ const ProductDetailPage = () => {
   const [isAdded, setIsAdded] = useState(false);
 
   // 畫面渲染後初步載入產品細項
+  /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     const fetchProduct = async () => {
       setIsScreenLoading(true);
@@ -45,7 +46,7 @@ const ProductDetailPage = () => {
     };
 
     fetchProduct();
-  }, [product_id, showError]);
+  }, [product_id]);
 
   //加入購物車
   const handleAddCartItem = async (productId, qty = 1) => {
@@ -54,7 +55,7 @@ const ProductDetailPage = () => {
     setIsLoading(true);
 
     try {
-      await updateCartItem(productId, qty);
+      await addsCartItem(productId, qty);
 
       setCartMessage('✓ 已加入購物車');
       success('✓ 已加入購物車');
