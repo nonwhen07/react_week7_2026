@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 // import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 import { getProducts } from '@/services/productService';
 import { updateCartItem } from '@/services/cartService';
@@ -15,6 +15,8 @@ import { FaCartPlus, FaSearch } from 'react-icons/fa';
 import { useToast } from '@/hooks/useToast';
 
 const ProductsPage = () => {
+  const [searchParams] = useSearchParams();
+  const category = searchParams.get('category');
   const { showError } = useToast();
   const [products, setProducts] = useState([]);
   // const [pageInfo, setPageInfo] = useState({});
@@ -40,6 +42,9 @@ const ProductsPage = () => {
   };
 
   useEffect(() => {
+    if (category) {
+      // filter products
+    }
     fetchProducts();
   }, []);
 

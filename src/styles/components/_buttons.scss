@@ -2,7 +2,7 @@
 @use 'sass:color';
 
 .ui-btn {
-  padding: 10px 18px;
+  padding: 10px 16px;
   border-radius: $radius-sm;
   border: none;
   cursor: pointer;
@@ -19,7 +19,7 @@
 
   &--accent {
     background: $color-accent;
-    color: white;
+    color: $neutral-100;
   }
 
   &--outline {
@@ -29,13 +29,13 @@
 
     &:hover {
       background: $color-primary;
-      color: white;
+      color: $neutral-100;
     }
   }
 
   &--season {
     background: var(--season-primary, $color-primary);
-    color: white;
+    color: $neutral-100;
   }
 }
 
@@ -45,8 +45,8 @@
   bottom: 2.5rem;
   z-index: 1200;
 
-  width: 48px;
-  height: 48px;
+  width: 3rem;
+  height: 3rem;
 
   display: flex;
   align-items: center;
@@ -61,7 +61,7 @@
 
   // 主體（可以吃 seasontheme）
   background: var(--season-primary, $color-primary);
-  color: white;
+  color: $neutral-100;
   border: none;
 
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
@@ -75,6 +75,8 @@
   // hover（重點：不是亂變色，是「同色系變化」）
   &:hover {
     transform: translateY(-3px) scale(1.05);
+
+    color: darken($color-primary, 10%);
 
     background: darken($color-primary, 10%);
     // 如果有 theme，就用 theme 色

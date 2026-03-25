@@ -48,6 +48,7 @@ const routes = [
     element: <FrontLayout />,
     children: [
       { index: true, element: <HomePage /> },
+      // { path: 'products', element: <ProductsPage /> },
       { path: 'products', element: <ProductsPage /> },
       { path: 'product/:product_id', element: <ProductDetailPage /> },
       { path: 'cart', element: <CartPage /> },

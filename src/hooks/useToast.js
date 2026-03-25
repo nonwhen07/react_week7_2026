@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { pushMessage } from '@/features/toast/toastSlice';
 
+// 從toastSlice狀態中抽出
 export const useToast = () => {
   const dispatch = useDispatch();
 
@@ -31,9 +32,19 @@ export const useToast = () => {
     );
   };
 
+  const info = (text) => {
+    dispatch(
+      pushMessage({
+        text,
+        status: 'info',
+      }),
+    );
+  };
+
   return {
     success,
     showError,
     warning,
+    info,
   };
 };

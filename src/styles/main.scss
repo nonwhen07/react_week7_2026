@@ -7,14 +7,13 @@
 
 // // 多人協作reset 由框架組維護，base 由設計組維護
 // // @use './base/reset'; // 已合併到 base.scss，保留作為參考(小專案無須拆分)
-// @use './base/base';
+@use './base/base';
 
 @use './layout/layout';
 @use './layout/header';
 @use './layout/footer';
 @use './layout/theme';
 
-// @use './layout/hero';
 // @use './layout/articles';
 // @use './layout/herosection';
 // @use './layout/infosection';
@@ -24,6 +23,7 @@
 // @use './layout/repostpost';
 // @use './layout/findStores';
 
+@use './components/hero';
 @use './components/buttons';
 @use './components/spinners';
 @use './components/page-loader';

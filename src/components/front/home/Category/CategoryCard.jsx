@@ -1,11 +1,18 @@
+import { useNavigate } from 'react-router-dom';
+
 const CategoryCard = ({ category }) => {
+  const navigate = useNavigate();
   // const category = {
   //   title: 'Plants',
   //   image: '/img/category-plants.jpg',
   // };
 
+  const handleClick = () => {
+    navigate(`/products?category=${category.title.toLowerCase()}`);
+  };
+
   return (
-    <div className="card-category">
+    <div className="card-category" onClick={handleClick}>
       <div className="card-category__image">
         <img src={category.image} alt={category.title} />
         {/* 未來可以補上loading */}

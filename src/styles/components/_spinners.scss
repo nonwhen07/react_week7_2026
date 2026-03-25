@@ -10,10 +10,18 @@
   height: $size;
   border-radius: 50%;
 
+  // background: conic-gradient(
+  //   $color-primary 0deg,
+  //   color.mix($color-accent, $color-accent, 50%) 60deg,
+  //   $ui-warning 120deg,
+  //   transparent 120deg 360deg
+  // );
+
+  // 未來嘗試 seasontheme：--season-primary、--season-bg
   background: conic-gradient(
-    $color-primary 0deg,
-    color.mix($color-accent, $ui-warning, 50%) 60deg,
-    $ui-warning 120deg,
+    $color-accent 0deg,
+    color.mix($color-accent, $color-primary, 50%) 80deg,
+    $color-primary 140deg,
     transparent 120deg 360deg
   );
 

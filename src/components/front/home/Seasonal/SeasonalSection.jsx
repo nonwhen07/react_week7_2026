@@ -1,28 +1,29 @@
 import SeasonalProductCard from '@/components/front/home/Seasonal/SeasonalCard';
+import noImage from '@/assets/images/no-image.png';
 const seasonalProducts = [
   {
     id: 1,
     title: 'Valentine Rose Bouquet',
     price: 980,
-    image: '/images/seasonal/rose-bouquet.jpg',
+    image: noImage,
   },
   {
     id: 2,
     title: 'Spring Tulip Gift',
     price: 720,
-    image: '/images/seasonal/tulip.jpg',
+    image: noImage,
   },
   {
     id: 3,
     title: 'Lucky Bamboo Plant',
     price: 420,
-    image: '/images/seasonal/bamboo.jpg',
+    image: noImage,
   },
   {
     id: 4,
     title: 'Orchid Flower Set',
     price: 1280,
-    image: '/images/seasonal/orchid.jpg',
+    image: noImage,
   },
 ];
 
