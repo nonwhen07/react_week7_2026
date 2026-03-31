@@ -5,8 +5,11 @@ import {
   updateProduct,
   deleteProduct,
 } from '@/services/productService';
+// utils
 import { handleApiError } from '@/utils/apiErrorHandler';
-
+// hooks
+import { useToast } from '@/hooks/useToast';
+// components
 import Pagination from '@/components/Pagination';
 import ProductModal from '@/components/admin/ProductModal';
 import DeleteModal from '@/components/admin/DeleteModal';
@@ -114,6 +117,8 @@ function ProductsPage() {
   const [tempProduct, setTempProduct] = useState(DEFAULT_PRODUCT);
   const [modalMode, setModalMode] = useState(null);
 
+  const { success, showError } = useToast();
+
   // 將try catch交給呼叫的函式處理包含loading，讓getProducts專注在抓資料，並且能在需要時重複使用
   const getProducts = async (page = 1) => {
     const { products, pagination } = await getAdminProducts(page);
@@ -127,9 +132,8 @@ function ProductsPage() {
       setIsScreenLoading(true);
       await getProducts(page);
     } catch (error) {
-      // console.error(error);
-      // setModalError(error.response?.data?.message || '取得產品列表分頁失敗');
-      handleApiError(error, setModalError, '取得產品列表分頁失敗');
+      const errorMessage = handleApiError(error, null, '取得產品列表分頁失敗。');
+      showError(errorMessage);
     } finally {
       setIsScreenLoading(false);
     }
@@ -211,16 +215,17 @@ function ProductsPage() {
       await getProducts(pageInfo.current_page || 1);
 
       setIsProductModalOpen(false); // 成功才關閉 Modal
+
+      success(modalMode === 'create' ? '產品新增成功！' : '產品更新成功！'); // 成功訊息
     } catch (error) {
-      // console.error(error);
-      // setModalError(error.response?.data?.message || '操作失敗');
-      handleApiError(error, setModalError, '操作失敗');
+      const errorMessage = handleApiError(error, null, '更新產品失敗，請稍後再試。');
+      showError(errorMessage);
     } finally {
       setIsScreenLoading(false);
     }
   };
 
-  //刪除產品
+  // 刪除產品
   const handleDeleteProduct = async () => {
     setIsScreenLoading(true);
 
@@ -229,8 +234,15 @@ function ProductsPage() {
       await getProducts(pageInfo.current_page || 1);
 
       setIsDeleteModalOpen(false);
+      success('產品刪除成功！'); // 成功訊息
     } catch (error) {
       console.error(error);
+      const errorMessage = handleApiError(
+        error,
+        null,
+        '刪除產品失敗，請稍後再試。失敗，請稍後再試。',
+      );
+      showError(errorMessage);
     } finally {
       setIsScreenLoading(false);
     }
@@ -269,7 +281,8 @@ function ProductsPage() {
       try {
         await getProducts(1);
       } catch (error) {
-        handleApiError(error, setModalError, '取得產品列表失敗');
+        const errorMessage = handleApiError(error, null, '取得產品列表失敗，請稍後再試。');
+        showError(errorMessage);
       } finally {
         setIsScreenLoading(false);
       }

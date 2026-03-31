@@ -16,9 +16,8 @@ const routes = [
 ];
 
 const FrontHeader = () => {
-  // 初始化 dispatch
+  // 初始化
   const dispatch = useDispatch();
-  // 初始化 navigate
   const navigate = useNavigate();
   const { success, showError } = useToast();
 
