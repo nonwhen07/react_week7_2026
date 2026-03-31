@@ -16,6 +16,7 @@ export const useAuthInit = () => {
   const navigate = useNavigate();
 
   // 由於沒有回傳會員名稱和權限狀態的API，userSlice先製作後暫時不使用
+
   useEffect(() => {
     const initAuth = async () => {
       const token = getToken();
@@ -44,7 +45,7 @@ export const useAuthInit = () => {
         navigate('/login');
       }
     };
-
     initAuth();
-  }, [dispatch, navigate, showError]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, navigate]);
 };

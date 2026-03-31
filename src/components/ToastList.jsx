@@ -93,16 +93,16 @@ const ToastList = () => {
   );
   // 單一Toast讓他暫停時間去瀏覽
   // 為什麼 pauseTimer 不用 dependency？ => timersRef.current 是 mutable（可變的）
-  const pauseTimer = useCallback((id) => {
-    clearTimeout(timersRef.current[id]);
-    delete timersRef.current[id];
-  }, []);
-  const resumeTimer = useCallback(
-    (id, duration) => {
-      startTimer(id, duration);
-    },
-    [startTimer],
-  );
+  // const pauseTimer = useCallback((id) => {
+  //   clearTimeout(timersRef.current[id]);
+  //   delete timersRef.current[id];
+  // }, []);
+  // const resumeTimer = useCallback(
+  //   (id, duration) => {
+  //     startTimer(id, duration);
+  //   },
+  //   [startTimer],
+  // );
 
   // 手動移除
   const handleDismiss = (message_id) => {
@@ -149,8 +149,8 @@ const ToastList = () => {
             key={message.id}
             ref={(el) => (toastRef.current[message.id] = el)}
             className={`toast ui-toast show ${statusClass[message.status]}`}
-            onMouseEnter={() => pauseTimer(message.id)}
-            onMouseLeave={() => resumeTimer(message.id, durationMap[message.status])}
+            // onMouseEnter={() => pauseTimer(message.id)}
+            // onMouseLeave={() => resumeTimer(message.id, durationMap[message.status])}
             role="alert"
             aria-live="assertive"
             aria-atomic="true"
