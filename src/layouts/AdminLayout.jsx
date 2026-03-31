@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 // import PageLoader from '@/components/PageLoader';
-import AdminSidebar from '@/components/admin/AdminSidebar';
+import AdminAside from '@/components/admin/AdminAside';
 import AdminHeader from '@/components/admin/AdminHeader';
 import GoTop from '@/components/GoTop';
 

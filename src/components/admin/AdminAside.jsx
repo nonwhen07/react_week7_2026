@@ -3,9 +3,9 @@ import { NavLink } from 'react-router-dom';
 import {
   FaTachometerAlt,
   FaBoxOpen,
-  FaShoppingCart,
-  FaTicketAlt,
-  FaNewspaper,
+  // FaShoppingCart,
+  // FaTicketAlt,
+  // FaNewspaper,
   FaHome,
   FaAlignJustify,
 } from 'react-icons/fa';
@@ -24,24 +24,24 @@ const menu = [
     icon: FaBoxOpen,
     title: '產品列表',
   },
-  {
-    path: '/admin/orders',
-    name: 'Orders',
-    icon: FaShoppingCart,
-    title: '優惠卷列表',
-  },
-  {
-    path: '/admin/coupons',
-    name: 'Coupons',
-    icon: FaTicketAlt,
-    title: '優惠卷列表',
-  },
-  {
-    path: '/admin/news',
-    name: 'News',
-    icon: FaNewspaper,
-    title: '最新消息',
-  },
+  // {
+  //   path: '/admin/orders',
+  //   name: 'Orders',
+  //   icon: FaShoppingCart,
+  //   title: '優惠卷列表',
+  // },
+  // {
+  //   path: '/admin/coupons',
+  //   name: 'Coupons',
+  //   icon: FaTicketAlt,
+  //   title: '優惠卷列表',
+  // },
+  // {
+  //   path: '/admin/news',
+  //   name: 'News',
+  //   icon: FaNewspaper,
+  //   title: '最新消息',
+  // },
   { path: '/', name: 'BackHome', icon: FaHome, title: '回到前台首頁' },
 ];
 
