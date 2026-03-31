@@ -8,7 +8,7 @@ const ProductCard = ({ productItem }) => {
   return (
     <div className="card-product">
       <div className="card-product__image">
-        <img src={productItem.image} alt={productItem.title} loading="lazy" />
+        <img src={productItem.imageUrl} alt={productItem.title} loading="lazy" />
       </div>
 
       <div className="card-product__body">

@@ -189,20 +189,6 @@ function ProductsPage() {
     return null;
   };
 
-  // 新增產品
-  // const createProduct = async () => {
-  //   // return axios.post(`${BASE_URL}/product`, {
-  //   //   data: formatProductData(tempProduct),
-  //   // });
-  //   return await createProduct(tempProduct);
-  // };
-  // // 編輯產品
-  // const updateProduct = async () => {
-  //   // return axios.put(`${BASE_URL}/product/${tempProduct.id}`, {
-  //   //   data: formatProductData(tempProduct),
-  //   // });
-  //   return await updateProduct(tempProduct.id, formatProductData(tempProduct));
-  // };
   // 更新產品 - 包含前端驗證、錯誤訊息顯示
   const handleUpdateProduct = async () => {
     setIsScreenLoading(true);
@@ -235,10 +221,6 @@ function ProductsPage() {
   };
 
   //刪除產品
-  // const deleteProduct = async () => {
-  //   // return axios.delete(`${BASE_URL}/product/${tempProduct.id}`);
-  //   return await deleteProduct(tempProduct.id);
-  // };
   const handleDeleteProduct = async () => {
     setIsScreenLoading(true);
 
@@ -275,14 +257,6 @@ function ProductsPage() {
   };
 
   // DeleteModal
-  // const handleOpenDeleteModal = (product = DEFAULT_PRODUCT) => {
-  //   setTempProduct(
-  //     // 避免 api 回傳 product 為空物件時，無法正確設定tempProduct更保險
-  //     product && Object.keys(product).length > 0 ? product : DEFAULT_PRODUCT,
-  //   );
-  //   // 改由 isDeleteModalOpen 狀態控制 DeleteModal 的開關，並將 tempProduct 傳遞給 DeleteModal 顯示對應的產品資訊
-  //   setIsDeleteModalOpen(true);
-  // };
   const handleOpenDeleteModal = (product) => {
     setTempProduct(product || DEFAULT_PRODUCT);
     setIsDeleteModalOpen(true);
@@ -295,8 +269,6 @@ function ProductsPage() {
       try {
         await getProducts(1);
       } catch (error) {
-        // console.error(error);
-        // setModalError(error.response?.data?.message || '取得產品列表失敗');
         handleApiError(error, setModalError, '取得產品列表失敗');
       } finally {
         setIsScreenLoading(false);

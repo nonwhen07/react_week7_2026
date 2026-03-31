@@ -30,7 +30,7 @@ const seasonalProducts = [
 const SeasonalSection = () => {
   return (
     <section className="seasonal-section">
-      <div className="ui-container">
+      <div className="container ui-container">
         <div className="text-center mb-5">
           <h2 className="section-title">Seasonal Collection</h2>
           <p className="section-subtitle">為即將到來的節日準備好花禮</p>
