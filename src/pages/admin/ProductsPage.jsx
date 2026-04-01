@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import {
-  getAdminProducts,
+  // getAdminProducts,
   createProduct,
   updateProduct,
   deleteProduct,
@@ -9,6 +9,7 @@ import {
 import { handleApiError } from '@/utils/apiErrorHandler';
 // hooks
 import { useToast } from '@/hooks/useToast';
+import { useProducts } from '@/hooks/useProducts';
 // components
 import Pagination from '@/components/Pagination';
 import ProductModal from '@/components/admin/ProductModal';
@@ -108,8 +109,8 @@ function ProductsPage() {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   // 狀態管理 (State)
-  const [products, setProducts] = useState([]);
-  const [pageInfo, setPageInfo] = useState({});
+  // const [products, setProducts] = useState([]);
+  // const [pageInfo, setPageInfo] = useState({});
   const [isScreenLoading, setIsScreenLoading] = useState(false);
   // Modal 錯誤訊息狀態
   const [modalError, setModalError] = useState('');
@@ -118,13 +119,8 @@ function ProductsPage() {
   const [modalMode, setModalMode] = useState(null);
 
   const { success, showError } = useToast();
-
-  // 將try catch交給呼叫的函式處理包含loading，讓getProducts專注在抓資料，並且能在需要時重複使用
-  const getProducts = async (page = 1) => {
-    const { products, pagination } = await getAdminProducts(page);
-    setProducts(products);
-    setPageInfo(pagination);
-  };
+  // products, pageInfo, getProducts 拆分出去了hooks/useProducts.js
+  const { products, pageInfo, getProducts } = useProducts();
 
   // 產品列表分頁
   const handlePageChange = async (page = 1) => {
@@ -236,7 +232,6 @@ function ProductsPage() {
       setIsDeleteModalOpen(false);
       success('產品刪除成功！'); // 成功訊息
     } catch (error) {
-      console.error(error);
       const errorMessage = handleApiError(
         error,
         null,
@@ -288,6 +283,7 @@ function ProductsPage() {
       }
     };
     fetchProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
