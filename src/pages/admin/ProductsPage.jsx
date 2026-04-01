@@ -10,6 +10,8 @@ import { handleApiError } from '@/utils/apiErrorHandler';
 // hooks
 import { useToast } from '@/hooks/useToast';
 import { useProducts } from '@/hooks/useProducts';
+// import useProductModal from '@/hooks/useProductModal';
+
 // components
 import Pagination from '@/components/Pagination';
 import ProductModal from '@/components/admin/ProductModal';
@@ -104,23 +106,23 @@ const DEFAULT_PRODUCT = {
  *
  */
 function ProductsPage() {
+  // hooks
+  const { success, showError } = useToast();
+  // products, pageInfo, getProducts 拆分出去了hooks/useProducts.js
+  const { products, pageInfo, getProducts } = useProducts();
+  // const { tempProduct, openModal } = useProductModal();
+
   // 管理Modal元件開關
   const [isProductModalOpen, setIsProductModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   // 狀態管理 (State)
-  // const [products, setProducts] = useState([]);
-  // const [pageInfo, setPageInfo] = useState({});
   const [isScreenLoading, setIsScreenLoading] = useState(false);
   // Modal 錯誤訊息狀態
   const [modalError, setModalError] = useState('');
   // 資料狀態
   const [tempProduct, setTempProduct] = useState(DEFAULT_PRODUCT);
   const [modalMode, setModalMode] = useState(null);
-
-  const { success, showError } = useToast();
-  // products, pageInfo, getProducts 拆分出去了hooks/useProducts.js
-  const { products, pageInfo, getProducts } = useProducts();
 
   // 產品列表分頁
   const handlePageChange = async (page = 1) => {

@@ -35,7 +35,11 @@ const ProductModal = ({
     // 當 isOpen(開始關閉Modal) 變成 false 時，啟動 closing 動畫
     if (!isOpen && shouldRender) {
       document.body.classList.remove('modal-open');
-      setClosing(true);
+
+      setTimeout(() => {
+        setClosing(true);
+      }, 300);
+
       // 給 Bootstrap fade-out 300ms 時間
       const timer = setTimeout(() => {
         setClosing(false);
@@ -161,7 +165,7 @@ const ProductModal = ({
                 </div> */}
                 <div className="mb-3">
                   <label className="form-label">商品評價</label>
-                  <div style={{ fontSize: '24px', cursor: 'pointer' }}>
+                  <div className="d-flex " style={{ fontSize: '24px', cursor: 'pointer' }}>
                     {Array.from({ length: 5 }, (_, i) => {
                       const ratingValue = i + 1;
 
